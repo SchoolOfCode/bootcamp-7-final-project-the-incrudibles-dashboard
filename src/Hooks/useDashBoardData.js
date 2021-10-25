@@ -9,7 +9,7 @@ export default function useDashBoardData() {
   );
 
   return {
-    data: data,
+    responses: data,
     isLoading: !error && !data,
     isError: error,
   };

@@ -17,9 +17,11 @@ import Paper from "@mui/material/Paper";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import useDashBoardData from "../../Hooks/useDashBoardData";
+import useDashboardData from "../../hooks/useDashboardData";
 import { CSVLink } from "react-csv";
 import Button from "@mui/material/Button";
+import convertJsonToCsv from "../../helperFunctions/jsontocsv";
+import { useLoginContext } from "../../hooks/useLogin";
 
 const drawerWidth = 240;
 
@@ -69,21 +71,15 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 
-function DashboardContent({ setLoggedIn }) {
-  const { data } = useDashBoardData();
+
+export default function Dashboard() {
+  const { setLoggedIn } = useLoginContext();
+
+  const { responses } = useDashboardData();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
-  function convertJsonToCsv(jsonData) {
-    let csvrecord = Object.keys(jsonData.payload[0]).join(",") + "\n";
-    jsonData.payload.forEach(function (jsonrecord) {
-      csvrecord += Object.values(jsonrecord).join(",") + "\n";
-    });
-    console.log(typeof csvrecord);
-    return csvrecord;
-  }
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -178,7 +174,12 @@ function DashboardContent({ setLoggedIn }) {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <CSVLink data={convertJsonToCsv(data)}>Download CSV</CSVLink>
+                  {/* <button onClick={console.log(convertJsonToCsv(responses))}>
+                    Download
+                  </button> */}
+                  {/* <CSVLink data={() =>convertJsonToCsv(responses)}>
+                    Download me
+                  </CSVLink> */}
                 </Paper>
               </Grid>
             </Grid>
@@ -189,6 +190,3 @@ function DashboardContent({ setLoggedIn }) {
   );
 }
 
-export default function Dashboard({ setLoggedIn }) {
-  return <DashboardContent setLoggedIn={setLoggedIn} />;
-}
