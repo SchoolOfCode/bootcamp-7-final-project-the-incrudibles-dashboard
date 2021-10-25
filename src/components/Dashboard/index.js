@@ -17,6 +17,7 @@ import Paper from "@mui/material/Paper";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import useDashBoardData from "../../Hooks/useDashBoardData";
 
 const drawerWidth = 240;
 
@@ -67,6 +68,7 @@ const Drawer = styled(MuiDrawer, {
 const mdTheme = createTheme();
 
 function DashboardContent({ setLoggedIn }) {
+  const { data } = useDashBoardData();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -164,9 +166,9 @@ function DashboardContent({ setLoggedIn }) {
               </Grid> */}
               {/* Recent Orders */}
               <Grid item xs={12}>
-                <Paper
-                  sx={{ p: 2, display: "flex", flexDirection: "column" }}
-                ></Paper>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <button onClick={console.log(data)}>Download CSV</button>
+                </Paper>
               </Grid>
             </Grid>
           </Container>
