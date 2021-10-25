@@ -18,6 +18,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import useDashBoardData from "../../Hooks/useDashBoardData";
+import { CSVLink } from "react-csv";
+import Button from "@mui/material/Button";
 
 const drawerWidth = 240;
 
@@ -73,6 +75,15 @@ function DashboardContent({ setLoggedIn }) {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  function convertJsonToCsv(jsonData) {
+    let csvrecord = Object.keys(jsonData.payload[0]).join(",") + "\n";
+    jsonData.payload.forEach(function (jsonrecord) {
+      csvrecord += Object.values(jsonrecord).join(",") + "\n";
+    });
+    console.log(typeof csvrecord);
+    return csvrecord;
+  }
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -167,7 +178,7 @@ function DashboardContent({ setLoggedIn }) {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <button onClick={console.log(data)}>Download CSV</button>
+                  <CSVLink data={convertJsonToCsv(data)}>Download CSV</CSVLink>
                 </Paper>
               </Grid>
             </Grid>
