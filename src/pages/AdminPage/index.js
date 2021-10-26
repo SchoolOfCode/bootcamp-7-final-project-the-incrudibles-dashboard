@@ -6,10 +6,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Title from "../../components/Title";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
 import { usePartnersData } from "../../hooks/useDashboardData";
+import { Grid } from "@mui/material";
 
 export default function AdminPage() {
   const { response, isLoading } = usePartnersData();
