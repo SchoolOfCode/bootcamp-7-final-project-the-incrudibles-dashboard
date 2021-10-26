@@ -2,15 +2,29 @@ import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export default function useDashboardData() {
+export function useResponsesData() {
   const { data, error } = useSWR(
     `https://incrudibles.herokuapp.com/responses`,
     fetcher
   );
 
   return {
-    responses: data,
+    response: data,
     isLoading: !error && !data,
     isError: error,
   };
 }
+
+export function usePartnersData() {
+  const { data, error } = useSWR(
+    `https://incrudibles.herokuapp.com/partners`,
+    fetcher
+  );
+
+  return {
+    response: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+

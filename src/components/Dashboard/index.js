@@ -1,24 +1,27 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import useDashboardData from "../../hooks/useDashboardData";
-import { CSVLink } from "react-csv";
-import convertJsonToCsv from "../../helperFunctions/jsontocsv";
-import { mainListItems, secondaryListItems } from "../ListItems";
 import { useLoginContext } from "../../hooks/useLogin";
+import Homepage from "../../pages/Homepage";
+import AdminPage from "../../pages/AdminPage";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import LayersIcon from "@mui/icons-material/Layers";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 
 const drawerWidth = 240;
 
@@ -70,15 +73,14 @@ const mdTheme = createTheme();
 
 export default function Dashboard() {
   const { setLoggedIn } = useLoginContext();
-  const { responses, isLoading } = useDashboardData();
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
   return (
-    <ThemeProvider theme={mdTheme}>
-      {!isLoading && (
+    <Router>
+      <ThemeProvider theme={mdTheme}>
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
           <AppBar position="absolute" open={open}>
@@ -124,9 +126,44 @@ export default function Dashboard() {
               </IconButton>
             </Toolbar>
             <Divider />
-            <List>{mainListItems}</List>
+            <Link to="/home" style={{ textDecoration: "none", color: "black" }}>
+              <ListItem button>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+              </ListItem>
+            </Link>
+            <ListItem button>
+              <ListItemIcon>
+                <BarChartIcon />
+              </ListItemIcon>
+              <ListItemText primary="Reports" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <LayersIcon />
+              </ListItemIcon>
+              <ListItemText primary="Integrations" />
+            </ListItem>
+            <Link
+              to="/administration"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <AdminPanelSettingsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Administration" />
+              </ListItem>
+            </Link>
             <Divider />
-            <List onClick={() => setLoggedIn(false)}>{secondaryListItems}</List>
+            <ListItem button onClick={() => setLoggedIn(false)}>
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItem>
           </Drawer>
           <Box
             component="main"
@@ -141,48 +178,20 @@ export default function Dashboard() {
             }}
           >
             <Toolbar />
-            <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-              <Grid container spacing={3}>
-                {/* Chart */}
-                {/* <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240,
-                  }}
-                ></Paper>
-              </Grid> */}
-                {/* Recent Deposits */}
-                {/* <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240,
-                  }}
-                ></Paper>
-              </Grid> */}
-                {/* Recent Orders */}
-                <Grid item xs={12}>
-                  <Paper
-                    sx={{ p: 2, display: "flex", flexDirection: "column" }}
-                  >
-                    <CSVLink
-                      data={convertJsonToCsv(responses)}
-                      filename={"graduate_responses.csv"}
-                    >
-                      Download CSV
-                    </CSVLink>
-                  </Paper>
-                </Grid>
-              </Grid>
-            </Container>
+            <Switch>
+              <Route exact path="/home">
+                <Homepage />
+              </Route>
+              <Route path="/reports">{/* <Blogs /> */}</Route>
+              <Route path="/integrations">{/* <Blogs /> */}</Route>
+              <Route path="/administration">
+                <AdminPage />
+              </Route>
+            </Switch>
           </Box>
         </Box>
-      )}
-    </ThemeProvider>
+        )
+      </ThemeProvider>
+    </Router>
   );
 }
