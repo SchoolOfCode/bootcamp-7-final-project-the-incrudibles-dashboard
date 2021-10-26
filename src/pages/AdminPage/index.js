@@ -34,10 +34,11 @@ export default function AdminPage() {
                       <TableRow key={row.id}>
                         <TableCell>{row.org_name}</TableCell>
                         <TableCell>
-                          {row.is_partner && <Checkbox checked />}
+                          {row.is_partner && <Checkbox defaultChecked />}
                         </TableCell>
                         <TableCell>
-                          {row.is_sponsor && <Checkbox checked />}
+                          {row.is_sponsor && <Checkbox defaultChecked />}
+                          {!row.is_sponsor && <Checkbox />}
                         </TableCell>
                       </TableRow>
                     ))}
