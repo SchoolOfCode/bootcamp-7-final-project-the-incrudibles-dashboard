@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-import { LoginProvider } from "./hooks/useLogin";
+import { LoginProvider } from "./hooks/useLogin.js";
 
 ReactDOM.render(
   <React.StrictMode>
