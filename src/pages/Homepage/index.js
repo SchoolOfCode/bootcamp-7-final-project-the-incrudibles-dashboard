@@ -16,10 +16,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Title from "../../components/Title";
 import getRecentResponse from "../../helperFunctions/getrecentresponse";
+import Piechart from "../../components/Piechart";
 
 export default function Homepage() {
   const { response, isLoading } = useResponsesData();
-  console.log(response);
+  console.log("response", response);
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       {!isLoading && (
@@ -54,7 +55,9 @@ export default function Homepage() {
                 flexDirection: "column",
                 height: 240,
               }}
-            ></Paper>
+            >
+              <Piechart response={response} />
+            </Paper>
           </Grid>
           {/* all graduates */}
           <Grid item xs={12}>
