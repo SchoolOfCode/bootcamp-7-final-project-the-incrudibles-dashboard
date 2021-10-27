@@ -26,7 +26,6 @@ export function LoginProvider({ children }) {
       setLoggedIn(true);
       localStorage.setItem("token", "hpiaosgfhpoa03284-02u35ojspadgf");
     }
-    console.log(localStorage);
   };
 
   const handleLogout = () => {

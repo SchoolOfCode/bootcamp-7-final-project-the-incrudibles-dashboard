@@ -22,100 +22,8 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import Piechart from "../../components/Piechart";
-
-const dummydata = [
-  {
-    id: "308b265a-6036-4596-bb7f-d2ecd76d1395",
-    graduatename: "Giovanna Preston",
-    graduateemail: "Giovanna.Preston@emaildomain.com",
-    cohort: 1,
-    responses: [
-      {
-        id: "918acfb1-9e76-4b10-bb67-e3c236757a3d",
-        graduateuuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
-        timestamp: "2020-03-27T18:10:57",
-        isemployed: true,
-        techrole: true,
-        currentsalary: 28000,
-        currentemployer: "DRP",
-        lengthofservice: "12-18 months",
-        currentrole: "QA Tester",
-        currenttechstack: [
-          "JavaScript",
-          "TypeScript",
-          "Java",
-          "Node",
-          "React",
-          "Redis",
-          "AWS",
-          "MongoDB",
-        ],
-        jobsatisfaction: 5,
-      },
-    ],
-  },
-  {
-    id: "308b265a-6036-4596-bb7f-d2ecd76d1395",
-    graduatename: "Giovanna Preston",
-    graduateemail: "Giovanna.Preston@emaildomain.com",
-    cohort: 1,
-    responses: [
-      {
-        id: "918acfb1-9e76-4b10-bb67-e3c236757a3d",
-        graduateuuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
-        timestamp: "2020-03-27T18:10:57",
-        isemployed: true,
-        techrole: true,
-        currentsalary: 28000,
-        currentemployer: "DRP",
-        lengthofservice: "12-18 months",
-        currentrole: "QA Tester",
-        currenttechstack: [
-          "JavaScript",
-          "TypeScript",
-          "Java",
-          "Node",
-          "React",
-          "Redis",
-          "AWS",
-          "MongoDB",
-        ],
-        jobsatisfaction: 5,
-      },
-    ],
-  },
-  {
-    id: "308b265a-6036-4596-bb7f-d2ecd76d1395",
-    graduatename: "Giovanna Preston",
-    graduateemail: "Giovanna.Preston@emaildomain.com",
-    cohort: 1,
-    responses: [
-      {
-        id: "918acfb1-9e76-4b10-bb67-e3c236757a3d",
-        graduateuuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
-        timestamp: "2020-03-27T18:10:57",
-        isemployed: false,
-        techrole: true,
-        currentsalary: 28000,
-        currentemployer: "DRP",
-        lengthofservice: "12-18 months",
-        currentrole: "QA Tester",
-        currenttechstack: [
-          "JavaScript",
-          "TypeScript",
-          "Java",
-          "Node",
-          "React",
-          "Redis",
-          "AWS",
-          "MongoDB",
-        ],
-        jobsatisfaction: 5,
-      },
-    ],
-  },
-];
+import { DataProvider } from "../../hooks/useDataContext";
+import { useResponsesData } from "../../hooks/useSWR";
 
 const drawerWidth = 240;
 
@@ -167,6 +75,8 @@ const mdTheme = createTheme();
 
 export default function Dashboard() {
   const { handleLogout } = useLoginContext();
+  const { isLoading } = useResponsesData();
+
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -278,21 +188,22 @@ export default function Dashboard() {
             }}
           >
             <Toolbar />
-            <Switch>
-              <Route exact path="/home">
-                <Homepage />
-              </Route>
-              <Route path="/integrations">{/* <Blogs /> */}</Route>
-              <Route path="/reports">
-                <Piechart data={dummydata} text="Employment status" />
-              </Route>
-              <Route path="/administration">
-                <AdminPage />
-              </Route>
-            </Switch>
+            {!isLoading && (
+              <DataProvider>
+                <Switch>
+                  <Route exact path="/home">
+                    <Homepage />
+                  </Route>
+                  <Route path="/integrations">{/* <Blogs /> */}</Route>
+                  <Route path="/reports">{/* <Piechart /> */}</Route>
+                  <Route path="/administration">
+                    <AdminPage />
+                  </Route>
+                </Switch>
+              </DataProvider>
+            )}
           </Box>
         </Box>
-        )
       </ThemeProvider>
     </Router>
   );

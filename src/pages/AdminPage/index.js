@@ -8,8 +8,9 @@ import Title from "../../components/Title";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
-import { usePartnersData } from "../../hooks/useDashboardData";
 import { Grid } from "@mui/material";
+import { usePartnersData } from "../../hooks/useSWR";
+
 
 export default function AdminPage() {
   const { response, isLoading } = usePartnersData();

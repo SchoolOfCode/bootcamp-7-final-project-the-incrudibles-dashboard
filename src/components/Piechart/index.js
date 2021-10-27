@@ -1,17 +1,13 @@
 import * as React from "react";
-import {
-  Chart,
-  PieSeries,
-  Title,
-} from "@devexpress/dx-react-chart-material-ui";
+import { Chart, PieSeries } from "@devexpress/dx-react-chart-material-ui";
 import { Animation } from "@devexpress/dx-react-chart";
-import Paper from "@mui/material/Paper";
+import Title from "../../components/Title";
 
 function parseResponse(array) {
   let isEmployed = 0;
   let isNotEmployed = 0;
   array.forEach((item) => {
-    if (item.responses[0].techrole) {
+    if (item.responses[0].isemployed) {
       isEmployed++;
     } else isNotEmployed++;
   });
