@@ -19,30 +19,26 @@ export function DataProvider({ children }) {
     return;
   }
 
-  function filterMostRecentResponses() {
-    function compareTimestamps(responsesArray) {
-      return responsesArray.reduce((prev, curr) => {
-        if (curr.timestamp > prev.timestamp) {
-          return curr;
-        } else return prev;
-      });
-    }
-    setData(
-      data.map((graduate) => {
-        return {
-          ...graduate,
-          responses: compareTimestamps(graduate.responses),
-        };
-      })
-    );
-  }
+  // function filterMostRecentResponses() {
+  //   setData(
+  //     data.map((graduate) => {
+  //       return {
+  //         ...graduate,
+  //         responses: graduate.responses.reduce((prev, curr) => {
+  //           if (curr.timestamp > prev.timestamp) {
+  //             return curr;
+  //           } else return prev;
+  //         }),
+  //       };
+  //     })
+  //   );
+  // }
 
   return (
     <DataContext.Provider
       value={{
         data,
         filterDataByCohort,
-        filterMostRecentResponses,
         resetFilter,
       }}
     >

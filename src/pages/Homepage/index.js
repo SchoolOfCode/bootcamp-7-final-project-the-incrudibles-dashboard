@@ -59,7 +59,7 @@ export default function Homepage() {
               height: 240,
             }}
           >
-            <Piechart data={data} text="Employment status" />
+            <Piechart chartData={data} text="Employment status" />
           </Paper>
         </Grid>
         {/* all graduates */}
