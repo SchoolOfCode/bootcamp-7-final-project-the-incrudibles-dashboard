@@ -17,8 +17,7 @@ export default function convertJsonToCsv(jsonData) {
         currentrole,
         jobsatisfaction,
       } = response;
-      csvrecord +=
-        `${graduatename},
+      csvrecord += `${graduatename},
         ${graduateemail},
         ${cohort},
         ${graduateuuid},
@@ -29,7 +28,7 @@ export default function convertJsonToCsv(jsonData) {
         ${currentemployer},
         ${lengthofservice},        
         ${currentrole},
-        ${jobsatisfaction}` + "\n";
+        ${jobsatisfaction}\n`;
     });
   });
 

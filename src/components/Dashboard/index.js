@@ -72,7 +72,7 @@ const Drawer = styled(MuiDrawer, {
 const mdTheme = createTheme();
 
 export default function Dashboard() {
-  const { setLoggedIn } = useLoginContext();
+  const { handleLogout } = useLoginContext();
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -158,7 +158,7 @@ export default function Dashboard() {
               </ListItem>
             </Link>
             <Divider />
-            <ListItem button onClick={() => setLoggedIn(false)}>
+            <ListItem button onClick={() => handleLogout()}>
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>

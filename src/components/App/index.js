@@ -5,7 +5,6 @@ import { useLoginContext } from "../../hooks/useLogin";
 
 function App() {
   const { loggedIn } = useLoginContext();
-
   return (
     <div className="App">
       {!loggedIn && <Login />}
