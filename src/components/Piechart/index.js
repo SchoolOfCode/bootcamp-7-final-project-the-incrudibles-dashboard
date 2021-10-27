@@ -5,16 +5,30 @@ import {
   Title,
 } from "@devexpress/dx-react-chart-material-ui";
 import { Animation } from "@devexpress/dx-react-chart";
+import Paper from "@mui/material/Paper";
 
-export default function Piechart({ response }) {
+function parseResponse(array) {
+  let isEmployed = 0;
+  let isNotEmployed = 0;
+  array.forEach((item) => {
+    if (item.responses[0].techrole) {
+      isEmployed++;
+    } else isNotEmployed++;
+  });
   const data = [
     { status: "employed", area: isEmployed },
     { status: "unemployed", area: isNotEmployed },
   ];
+  return data;
+}
+
+export default function Piechart({ data, text }) {
+  let chartData = parseResponse(data);
+
   return (
-    <Chart data={data}>
+    <Chart data={chartData}>
       <PieSeries valueField="area" argumentField="status" />
-      <Title text="Area of Countries" />
+      <Title text={text} />
       <Animation />
     </Chart>
   );

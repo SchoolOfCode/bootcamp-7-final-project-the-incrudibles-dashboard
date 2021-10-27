@@ -18,6 +18,99 @@ import Title from "../../components/Title";
 import getRecentResponse from "../../helperFunctions/getrecentresponse";
 import Piechart from "../../components/Piechart";
 
+const dummydata = [
+  {
+    id: "308b265a-6036-4596-bb7f-d2ecd76d1395",
+    graduatename: "Giovanna Preston",
+    graduateemail: "Giovanna.Preston@emaildomain.com",
+    cohort: 1,
+    responses: [
+      {
+        id: "918acfb1-9e76-4b10-bb67-e3c236757a3d",
+        graduateuuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
+        timestamp: "2020-03-27T18:10:57",
+        isemployed: true,
+        techrole: true,
+        currentsalary: 28000,
+        currentemployer: "DRP",
+        lengthofservice: "12-18 months",
+        currentrole: "QA Tester",
+        currenttechstack: [
+          "JavaScript",
+          "TypeScript",
+          "Java",
+          "Node",
+          "React",
+          "Redis",
+          "AWS",
+          "MongoDB",
+        ],
+        jobsatisfaction: 5,
+      },
+    ],
+  },
+  {
+    id: "308b265a-6036-4596-bb7f-d2ecd76d1395",
+    graduatename: "Giovanna Preston",
+    graduateemail: "Giovanna.Preston@emaildomain.com",
+    cohort: 1,
+    responses: [
+      {
+        id: "918acfb1-9e76-4b10-bb67-e3c236757a3d",
+        graduateuuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
+        timestamp: "2020-03-27T18:10:57",
+        isemployed: true,
+        techrole: false,
+        currentsalary: 28000,
+        currentemployer: "DRP",
+        lengthofservice: "12-18 months",
+        currentrole: "QA Tester",
+        currenttechstack: [
+          "JavaScript",
+          "TypeScript",
+          "Java",
+          "Node",
+          "React",
+          "Redis",
+          "AWS",
+          "MongoDB",
+        ],
+        jobsatisfaction: 5,
+      },
+    ],
+  },
+  {
+    id: "308b265a-6036-4596-bb7f-d2ecd76d1395",
+    graduatename: "Giovanna Preston",
+    graduateemail: "Giovanna.Preston@emaildomain.com",
+    cohort: 1,
+    responses: [
+      {
+        id: "918acfb1-9e76-4b10-bb67-e3c236757a3d",
+        graduateuuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
+        timestamp: "2020-03-27T18:10:57",
+        isemployed: false,
+        techrole: false,
+        currentsalary: 28000,
+        currentemployer: "DRP",
+        lengthofservice: "12-18 months",
+        currentrole: "QA Tester",
+        currenttechstack: [
+          "JavaScript",
+          "TypeScript",
+          "Java",
+          "Node",
+          "React",
+          "Redis",
+          "AWS",
+          "MongoDB",
+        ],
+        jobsatisfaction: 5,
+      },
+    ],
+  },
+];
+
 export default function Homepage() {
   const { response, isLoading } = useResponsesData();
   console.log("response", response);
@@ -56,7 +149,7 @@ export default function Homepage() {
                 height: 240,
               }}
             >
-              <Piechart response={response} />
+              <Piechart data={dummydata} text="Employment status" />
             </Paper>
           </Grid>
           {/* all graduates */}
