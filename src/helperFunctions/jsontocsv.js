@@ -1,17 +1,35 @@
-
 export default function convertJsonToCsv(jsonData) {
   let csvrecord =
-    "graduateName,graduteEmail,cohort," +
-    Object.keys(jsonData.payload[0].responses[0]).join(",") +
+    "graduateName,graduteEmail,cohort,graduateuuid,timestamp,isemployed,techrole,currentsalary,currentemployer,lengthofservice,currentrole,jobsatisfaction" +
     "\n";
 
   jsonData.payload.forEach((graduate) => {
     let { graduatename, graduateemail, cohort } = graduate;
     graduate.responses.forEach((response) => {
+      const {
+        graduateuuid,
+        timestamp,
+        isemployed,
+        techrole,
+        currentsalary,
+        currentemployer,
+        lengthofservice,
+        currentrole,
+        jobsatisfaction,
+      } = response;
       csvrecord +=
-        `${graduatename},${graduateemail},${cohort}` +
-        Object.values(response).join(",") +
-        "\n";
+        `${graduatename},
+        ${graduateemail},
+        ${cohort},
+        ${graduateuuid},
+        ${timestamp},
+        ${isemployed},
+        ${techrole},
+        ${currentsalary},        
+        ${currentemployer},
+        ${lengthofservice},        
+        ${currentrole},
+        ${jobsatisfaction}` + "\n";
     });
   });
 
