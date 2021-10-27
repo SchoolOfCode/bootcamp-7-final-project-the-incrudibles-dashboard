@@ -26,17 +26,6 @@ export default function Homepage() {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper sx={{ p: 2, display: "flex", flexDirection: "row-reverse" }}>
-              {/* <InputLabel id="demo-simple-select-label">Age</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={12}
-                label="Age"
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select> */}
               <CSVLink
                 data={convertJsonToCsv(response)}
                 filename={"graduate_responses.csv"}

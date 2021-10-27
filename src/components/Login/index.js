@@ -14,18 +14,7 @@ import { useLoginContext } from "../../hooks/useLogin";
 const theme = createTheme();
 
 export default function Login() {
-  const { setLoggedIn } = useLoginContext();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    if (
-      data.get("email") === "admin@soc.com" &&
-      data.get("password") === "admin"
-    ) {
-      setLoggedIn(true);
-    }
-  };
+  const { handleLogin } = useLoginContext();
 
   return (
     <ThemeProvider theme={theme}>
@@ -47,7 +36,7 @@ export default function Login() {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={handleLogin}
             noValidate
             sx={{ mt: 1 }}
           >
