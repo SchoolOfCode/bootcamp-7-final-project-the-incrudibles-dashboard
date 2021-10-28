@@ -11,7 +11,7 @@ function parseResponse(array) {
   let isEmployed = 0;
   let isNotEmployed = 0;
   array.forEach((item) => {
-    if (item.responses[0].techrole) {
+    if (item.responses[0].tech_role) {
       isEmployed++;
     } else isNotEmployed++;
   });

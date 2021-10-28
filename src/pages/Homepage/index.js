@@ -6,9 +6,9 @@ import Paper from "@mui/material/Paper";
 import { CSVLink } from "react-csv";
 import convertJsonToCsv from "../../helperFunctions/jsontocsv";
 import { useResponsesData } from "../../hooks/useDashboardData";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+// import InputLabel from "@mui/material/InputLabel";
+// import MenuItem from "@mui/material/MenuItem";
+// import Select from "@mui/material/Select";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -21,21 +21,20 @@ import Piechart from "../../components/Piechart";
 const dummydata = [
   {
     id: "308b265a-6036-4596-bb7f-d2ecd76d1395",
-    graduatename: "Giovanna Preston",
-    graduateemail: "Giovanna.Preston@emaildomain.com",
+    graduate_name: "Giovanna Preston",
+    graduate_email: "Giovanna.Preston@emaildomain.com",
     cohort: 1,
     responses: [
       {
         id: "918acfb1-9e76-4b10-bb67-e3c236757a3d",
-        graduateuuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
+        graduate_uuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
         timestamp: "2020-03-27T18:10:57",
-        isemployed: true,
-        techrole: true,
-        currentsalary: 28000,
-        currentemployer: "DRP",
-        lengthofservice: "12-18 months",
-        currentrole: "QA Tester",
-        currenttechstack: [
+        tech_role: true,
+        current_salary: 28000,
+        current_employer: "DRP",
+        length_of_service: "12-18 months",
+        current_position: "QA Tester",
+        current_tech_stack: [
           "JavaScript",
           "TypeScript",
           "Java",
@@ -45,27 +44,26 @@ const dummydata = [
           "AWS",
           "MongoDB",
         ],
-        jobsatisfaction: 5,
+        job_satisfaction: 5,
       },
     ],
   },
   {
     id: "308b265a-6036-4596-bb7f-d2ecd76d1395",
-    graduatename: "Giovanna Preston",
-    graduateemail: "Giovanna.Preston@emaildomain.com",
+    graduate_name: "Giovanna Preston",
+    graduate_email: "Giovanna.Preston@emaildomain.com",
     cohort: 1,
     responses: [
       {
         id: "918acfb1-9e76-4b10-bb67-e3c236757a3d",
-        graduateuuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
+        graduate_uuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
         timestamp: "2020-03-27T18:10:57",
-        isemployed: true,
-        techrole: false,
-        currentsalary: 28000,
-        currentemployer: "DRP",
-        lengthofservice: "12-18 months",
-        currentrole: "QA Tester",
-        currenttechstack: [
+        tech_role: false,
+        current_salary: 28000,
+        current_employer: "DRP",
+        length_of_service: "12-18 months",
+        current_position: "QA Tester",
+        current_tech_stack: [
           "JavaScript",
           "TypeScript",
           "Java",
@@ -75,27 +73,26 @@ const dummydata = [
           "AWS",
           "MongoDB",
         ],
-        jobsatisfaction: 5,
+        job_satisfaction: 5,
       },
     ],
   },
   {
     id: "308b265a-6036-4596-bb7f-d2ecd76d1395",
-    graduatename: "Giovanna Preston",
-    graduateemail: "Giovanna.Preston@emaildomain.com",
+    graduate_name: "Giovanna Preston",
+    graduate_email: "Giovanna.Preston@emaildomain.com",
     cohort: 1,
     responses: [
       {
         id: "918acfb1-9e76-4b10-bb67-e3c236757a3d",
-        graduateuuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
+        graduate_uuid: "308b265a-6036-4596-bb7f-d2ecd76d1395",
         timestamp: "2020-03-27T18:10:57",
-        isemployed: false,
-        techrole: false,
-        currentsalary: 28000,
-        currentemployer: "DRP",
-        lengthofservice: "12-18 months",
-        currentrole: "QA Tester",
-        currenttechstack: [
+        tech_role: false,
+        current_salary: 28000,
+        current_employer: "DRP",
+        length_of_service: "12-18 months",
+        current_position: "QA Tester",
+        current_tech_stack: [
           "JavaScript",
           "TypeScript",
           "Java",
@@ -105,7 +102,7 @@ const dummydata = [
           "AWS",
           "MongoDB",
         ],
-        jobsatisfaction: 5,
+        job_satisfaction: 5,
       },
     ],
   },
@@ -162,7 +159,6 @@ export default function Homepage() {
                     <TableRow>
                       <TableCell>Name</TableCell>
                       <TableCell>Cohort</TableCell>
-                      <TableCell>Employed</TableCell>
                       <TableCell>Current Employer</TableCell>
                       <TableCell>Current Salary (£)</TableCell>
                     </TableRow>
@@ -170,16 +166,14 @@ export default function Homepage() {
                   <TableBody>
                     {response.payload.map((row) => (
                       <TableRow key={row.id}>
-                        <TableCell>{row.graduatename}</TableCell>
+                        <TableCell>{row.graduate_name}</TableCell>
                         <TableCell>{row.cohort}</TableCell>
+
                         <TableCell>
-                          {String(getRecentResponse(row.responses).isemployed)}
+                          {getRecentResponse(row.responses).current_employer}
                         </TableCell>
                         <TableCell>
-                          {getRecentResponse(row.responses).currentemployer}
-                        </TableCell>
-                        <TableCell>
-                          {getRecentResponse(row.responses).currentsalary}
+                          {getRecentResponse(row.responses).current_salary}
                         </TableCell>
                       </TableRow>
                     ))}
