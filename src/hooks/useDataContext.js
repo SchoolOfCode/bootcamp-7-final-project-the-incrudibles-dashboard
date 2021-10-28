@@ -19,6 +19,15 @@ export function DataProvider({ children }) {
     return;
   }
 
+  function filterDataByName(name) {
+    setData(
+      response.payload.filter((graduate) =>
+        graduate.graduatename.includes(name)
+      )
+    );
+    return;
+  }
+
   // function filterMostRecentResponses() {
   //   setData(
   //     data.map((graduate) => {
@@ -40,6 +49,7 @@ export function DataProvider({ children }) {
         data,
         filterDataByCohort,
         resetFilter,
+        filterDataByName,
       }}
     >
       {children}
