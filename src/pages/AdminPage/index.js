@@ -25,7 +25,7 @@ export default function AdminPage() {
                 <Table size="small">
                   <TableHead>
                     <TableRow>
-                      <TableCell>Organistion Name</TableCell>
+                      <TableCell>Organisation Name</TableCell>
                       <TableCell>Partner Organisation</TableCell>
                       <TableCell>Sponsor</TableCell>
                     </TableRow>

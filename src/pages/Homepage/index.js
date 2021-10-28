@@ -15,13 +15,18 @@ import Piechart from "../../components/Piechart";
 import { useDataContext } from "../../hooks/useDataContext";
 
 export default function Homepage() {
-  const { data, filterDataByCohort, resetFilter } = useDataContext();
+  const { data, filterDataByCohort, resetFilter, filterDataByName } =
+    useDataContext();
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "row" }}>
+            <input
+              type="text"
+              onChange={(e) => filterDataByName(e.target.value)}
+            />
             <button onClick={() => filterDataByCohort(1)}>cohort 1</button>
             <button onClick={() => filterDataByCohort(2)}>cohort 2</button>
             <button onClick={() => filterDataByCohort(3)}>cohort 3</button>
@@ -72,29 +77,22 @@ export default function Homepage() {
                   <TableRow>
                     <TableCell>Name</TableCell>
                     <TableCell>Cohort</TableCell>
-                    <TableCell>Employed</TableCell>
                     <TableCell>Current Employer</TableCell>
                     <TableCell>Current Salary (£)</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data.map((row) => (
-                    <TableRow key={row.id}>
-                      <TableCell>{row.graduatename}</TableCell>
-                      <TableCell>{row.cohort}</TableCell>
-                      <TableCell>
-                        {String(
-                          getMostRecentResponse(row.responses).isemployed
-                        )}
-                      </TableCell>
-                      <TableCell>
-                        {getMostRecentResponse(row.responses).currentemployer}
-                      </TableCell>
-                      <TableCell>
-                        {getMostRecentResponse(row.responses).currentsalary}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {data.map((row) => {
+                    const last = getMostRecentResponse(row.responses);
+                    return (
+                      <TableRow key={row.id}>
+                        <TableCell>{row.graduate_name}</TableCell>
+                        <TableCell>{row.cohort}</TableCell>
+                        <TableCell>{last.current_employer}</TableCell>
+                        <TableCell>{last.current_salary}</TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </React.Fragment>

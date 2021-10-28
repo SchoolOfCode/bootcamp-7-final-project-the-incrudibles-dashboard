@@ -22,7 +22,7 @@ export function DataProvider({ children }) {
   function filterDataByName(name) {
     setData(
       response.payload.filter((graduate) =>
-        graduate.graduatename.includes(name)
+        graduate.graduate_name.toLowerCase().includes(name.toLowerCase())
       )
     );
     return;
