@@ -3,7 +3,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Paper } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import GradTableRow from "../GradTableRow";
 
 export default function GradTable({ data }) {
@@ -13,10 +13,26 @@ export default function GradTable({ data }) {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>Name</TableCell>
-            <TableCell>Cohort</TableCell>
-            <TableCell>Current Employer</TableCell>
-            <TableCell align="right">Current Salary (£)</TableCell>
+            <TableCell>
+              <Typography variant="h6" component="div">
+                Name
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="h6" component="div">
+                Cohort
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="h6" component="div">
+                Current Employer
+              </Typography>
+            </TableCell>
+            <TableCell align="right">
+              <Typography variant="h6" component="div">
+                Current Salary (£)
+              </Typography>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
-import { Collapse } from "@mui/material";
+import { Collapse, Typography } from "@mui/material";
 import GradView from "../GradView";
 
 export default function GradTable({ gradData }) {
@@ -25,11 +25,17 @@ export default function GradTable({ gradData }) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {gradData.graduate_name}
+          <Typography>{gradData.graduate_name}</Typography>
         </TableCell>
-        <TableCell align="left">{gradData.cohort}</TableCell>
-        <TableCell align="left">{latestResponse.current_employer}</TableCell>
-        <TableCell align="right">{latestResponse.current_salary}</TableCell>
+        <TableCell align="left">
+          <Typography>{gradData.cohort}</Typography>
+        </TableCell>
+        <TableCell align="left">
+          <Typography> {latestResponse.current_employer}</Typography>
+        </TableCell>
+        <TableCell align="right">
+          <Typography> {latestResponse.current_salary}</Typography>
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
