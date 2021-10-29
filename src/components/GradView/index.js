@@ -5,6 +5,7 @@ import TableRow from "@mui/material/TableRow";
 import { Grid, Paper, TableBody, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
+import JobSatisfaction from "../JobSatisfaction";
 
 export default function GradView({ gradData }) {
   const latestResponse = getMostRecentResponse(gradData.responses);
@@ -59,7 +60,7 @@ export default function GradView({ gradData }) {
             </Table>
           </Paper>
         </Grid>
-        {/* pie chart */}
+        {/* job satisfaction */}
         <Grid item xs={12} md={4} lg={4}>
           <Paper
             sx={{
@@ -68,7 +69,13 @@ export default function GradView({ gradData }) {
               flexDirection: "column",
               height: 240,
             }}
-          ></Paper>
+          >
+            {latestResponse.job_satisfaction && (
+              <JobSatisfaction
+                satisfactionIndex={[latestResponse.job_satisfaction]}
+              />
+            )}
+          </Paper>
         </Grid>
         {/* pie chart */}
         <Grid item xs={12} md={4} lg={4}>

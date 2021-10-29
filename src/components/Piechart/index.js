@@ -22,7 +22,6 @@ function parseResponse(array) {
 
 export default function Piechart({ chartData, text }) {
   let parsedData = parseResponse(chartData);
-  console.log(parsedData);
   return (
     <Chart data={parsedData}>
       <PieSeries valueField="area" argumentField="status" />
