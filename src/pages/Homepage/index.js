@@ -13,11 +13,16 @@ import Title from "../../components/Title";
 import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
 import Piechart from "../../components/Piechart";
 import { useDataContext } from "../../hooks/useDataContext";
+import JobSatisfaction from "../../components/JobSatisfaction";
 
 export default function Homepage() {
   const { data, filterDataByCohort, resetFilter, filterDataByName } =
     useDataContext();
-
+  const jobSatisfationData = data.map((row) => {
+    const last = getMostRecentResponse(row.responses).job_satisfaction;
+    return last;
+  });
+  console.log("jobSatisfationData", jobSatisfationData);
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
@@ -44,7 +49,19 @@ export default function Homepage() {
           </Paper>
         </Grid>
         {/* selection */}
-        <Grid item xs={12} md={8} lg={9}>
+        <Grid item xs={12} md={4} lg={3}>
+          <Paper
+            sx={{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              height: 240,
+            }}
+          >
+            <JobSatisfaction satisfactionIndex={jobSatisfationData} />
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={8} lg={6}>
           <Paper
             sx={{
               p: 2,
