@@ -1,23 +1,22 @@
 export default function convertJsonToCsv(data) {
   let csvrecord =
-    "graduateName,graduteEmail,cohort,graduateuuid,timestamp,isemployed,techrole,currentsalary,currentemployer,lengthofservice,currentrole,jobsatisfaction" +
+    "graduateName,graduteEmail,cohort,graduateuuid,timestamp,techrole,currentsalary,currentemployer,lengthofservice,currentposition,jobsatisfaction" +
     "\n";
 
-    data.forEach((graduate) => {
-    let { graduatename, graduateemail, cohort } = graduate;
+  data.forEach((graduate) => {
+    let { graduate_name, graduate_email, cohort } = graduate;
     graduate.responses.forEach((response) => {
       const {
-        graduateuuid,
+        graduate_uuid,
         timestamp,
-        isemployed,
-        techrole,
-        currentsalary,
-        currentemployer,
-        lengthofservice,
-        currentrole,
-        jobsatisfaction,
+        tech_role,
+        current_salary,
+        current_employer,
+        length_of_service,
+        current_position,
+        job_satisfaction,
       } = response;
-      csvrecord += `${graduatename},${graduateemail},${cohort},${graduateuuid},${timestamp},${isemployed},${techrole},${currentsalary},${currentemployer},${lengthofservice},${currentrole},${jobsatisfaction}\n`;
+      csvrecord += `${graduate_name},${graduate_email},${cohort},${graduate_uuid},${timestamp},${tech_role},${current_salary},${current_employer},${length_of_service},${current_position},${job_satisfaction}\n`;
     });
   });
 
