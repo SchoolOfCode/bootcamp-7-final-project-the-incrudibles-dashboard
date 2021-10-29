@@ -4,15 +4,9 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { CSVLink } from "react-csv";
 import convertJsonToCsv from "../../helperFunctions/jsontocsv";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Title from "../../components/Title";
-import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
 import Piechart from "../../components/Piechart";
 import { useDataContext } from "../../hooks/useDataContext";
+import GradTable from "../../components/GradTable";
 
 export default function Homepage() {
   const { data, filterDataByCohort, resetFilter, filterDataByName } =
@@ -70,32 +64,7 @@ export default function Homepage() {
         {/* all graduates */}
         <Grid item xs={12}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-            <React.Fragment>
-              <Title>Current data</Title>
-              <Table size="small">
-                <TableHead sx={{ p: 2, fontWeight: "bold" }}>
-                  <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Cohort</TableCell>
-                    <TableCell>Current Employer</TableCell>
-                    <TableCell>Current Salary (£)</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {data.map((row) => {
-                    const last = getMostRecentResponse(row.responses);
-                    return (
-                      <TableRow key={row.id}>
-                        <TableCell>{row.graduate_name}</TableCell>
-                        <TableCell>{row.cohort}</TableCell>
-                        <TableCell>{last.current_employer}</TableCell>
-                        <TableCell>{last.current_salary}</TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </React.Fragment>
+            <GradTable data={data} />
           </Paper>
         </Grid>
       </Grid>
