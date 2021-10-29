@@ -60,7 +60,18 @@ export default function GradView({ gradData }) {
           </Paper>
         </Grid>
         {/* pie chart */}
-        <Grid item xs={12} md={8} lg={9}>
+        <Grid item xs={12} md={4} lg={4}>
+          <Paper
+            sx={{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              height: 240,
+            }}
+          ></Paper>
+        </Grid>
+        {/* pie chart */}
+        <Grid item xs={12} md={4} lg={4}>
           <Paper
             sx={{
               p: 2,
