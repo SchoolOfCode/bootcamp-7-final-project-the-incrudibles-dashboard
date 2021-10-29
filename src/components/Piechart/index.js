@@ -9,7 +9,7 @@ function parseResponse(array) {
   let isNotEmployed = 0;
   array.forEach((item) => {
     const last = getMostRecentResponse(item.responses);
-    if (last.isemployed) {
+    if (last.tech_role) {
       isEmployed++;
     } else isNotEmployed++;
   });
