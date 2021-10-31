@@ -1,32 +1,36 @@
 import React from "react";
-import { Doughnut } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
-const JobSatisfaction = ({ satisfactionIndex }) => {
-  let one = 0;
-  let two = 0;
-  let three = 0;
-  let four = 0;
-  let five = 0;
+const SalaryGraph = ({ salaryInfo }) => {
+  let twenty = 0;
+  let twentyFive = 0;
+  let thirty = 0;
+  let thirtyFive = 0;
+  let fortyFive = 0;
+  let forty = 0;
 
-  let jobSatisfaction = satisfactionIndex.map((satisfaction) => {
-    return satisfaction.job_satisfaction;
+  let salaries = salaryInfo.map((salary) => {
+    return salary.current_salary;
   });
-  for (let i = 0; i < jobSatisfaction.length; i++) {
-    switch (jobSatisfaction[i]) {
-      case 1:
-        one++;
+  for (let i = 0; i < salaries.length; i++) {
+    switch (true) {
+      case salaries[i] >= 45000:
+        fortyFive++;
         break;
-      case 2:
-        two++;
+      case salaries[i] >= 40000:
+        forty++;
         break;
-      case 3:
-        three++;
+      case salaries[i] >= 35000:
+        thirtyFive++;
         break;
-      case 4:
-        four++;
+      case salaries[i] >= 30000:
+        thirty++;
         break;
-      case 5:
-        five++;
+      case salaries[i] >= 25000:
+        twentyFive++;
+        break;
+      case salaries[i] >= 20000:
+        twenty++;
         break;
 
       default:
@@ -34,19 +38,20 @@ const JobSatisfaction = ({ satisfactionIndex }) => {
   }
   return (
     <div>
-      <Doughnut
+      <Bar
         data={{
           labels: [
-            "Very Dissattisfied",
-            "Dissattisfied",
-            "Satisfied",
-            "Happy",
-            "Very Happy",
+            "£20,000",
+            "£25,000",
+            "£30,000",
+            "£35,000",
+            "£40,000",
+            "£45,000",
           ],
           datasets: [
             {
               label: "Current Salary",
-              data: [one, two, three, four, five],
+              data: [twenty, twentyFive, thirty, thirtyFive, fortyFive, forty],
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
                 "rgba(54, 162, 235, 0.2)",
@@ -67,10 +72,11 @@ const JobSatisfaction = ({ satisfactionIndex }) => {
             },
           ],
         }}
-        var
+        height={350}
+        width={800}
       />
     </div>
   );
 };
 
-export default JobSatisfaction;
+export default SalaryGraph;

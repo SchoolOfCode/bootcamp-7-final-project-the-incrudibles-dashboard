@@ -1,32 +1,40 @@
-import * as React from "react";
-import { Chart, PieSeries } from "@devexpress/dx-react-chart-material-ui";
-import { Animation } from "@devexpress/dx-react-chart";
-import Title from "../../components/Title";
-import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
+import React from "react";
+import { Pie } from "react-chartjs-2";
 
-function parseResponse(array) {
-  let isEmployed = 0;
-  let isNotEmployed = 0;
-  array.forEach((item) => {
-    const last = getMostRecentResponse(item.responses);
-    if (last.tech_role) {
-      isEmployed++;
-    } else isNotEmployed++;
+const Piechart = ({ employmentStatus }) => {
+  let employed = 0;
+  let unEmployed = 0;
+
+  let isEmployed = employmentStatus.map((employed) => {
+    return employed.tech_role;
   });
-  const data = [
-    { status: "employed", area: isEmployed },
-    { status: "unemployed", area: isNotEmployed },
-  ];
-  return data;
-}
+  for (let i = 0; i < isEmployed.length; i++) {
+    isEmployed[i] ? employed++ : unEmployed++;
+  }
 
-export default function Piechart({ chartData, text }) {
-  let parsedData = parseResponse(chartData);
   return (
-    <Chart data={parsedData}>
-      <PieSeries valueField="area" argumentField="status" />
-      <Title text={text} />
-      <Animation />
-    </Chart>
+    <div>
+      <Pie
+        data={{
+          labels: ["Employed", "Unemployed"],
+          datasets: [
+            {
+              label: "Employment Status",
+              data: [employed, unEmployed],
+              backgroundColor: [
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(255, 99, 132, 0.2)",
+              ],
+              borderColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
+              borderWidth: 1,
+            },
+          ],
+        }}
+        height={250}
+        width={800}
+      />
+    </div>
   );
-}
+};
+
+export default Piechart;
