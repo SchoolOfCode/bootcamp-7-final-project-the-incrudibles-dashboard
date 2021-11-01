@@ -9,15 +9,26 @@ import { useDataContext } from "../../hooks/useDataContext";
 import GradTable from "../../components/GradTable";
 import JobSatisfaction from "../../components/JobSatisfaction";
 import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
+import SalaryGraph from "../../components/SalaryGraph";
+import SuccessTime from "../../components/SuccessTime";
 
 export default function Homepage() {
   const { data, filterDataByCohort, resetFilter, filterDataByName } =
     useDataContext();
-  const jobSatisfationData = data.map((row) => {
-    const last = getMostRecentResponse(row.responses).job_satisfaction;
-    return last;
+  const ChartData = data.map((row) => {
+    const graduationDate = row.graduation_date;
+    const firstJobDate = row.first_job_date;
+    const { job_satisfaction, current_salary, tech_role } =
+      getMostRecentResponse(row.responses);
+    return {
+      job_satisfaction,
+      current_salary,
+      tech_role,
+      graduationDate,
+      firstJobDate,
+    };
   });
-  console.log("jobSatisfationData", jobSatisfationData);
+  console.log("CHartdata", data);
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
@@ -44,39 +55,56 @@ export default function Homepage() {
           </Paper>
         </Grid>
         {/* selection */}
-        <Grid item xs={12} md={4} lg={3}>
+        <Grid item xs={4}>
           <Paper
             sx={{
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 240,
+              height: 380,
             }}
           >
-            <JobSatisfaction satisfactionIndex={jobSatisfationData} />
+            <JobSatisfaction satisfactionIndex={ChartData} />
           </Paper>
         </Grid>
-        <Grid item xs={12} md={8} lg={6}>
-          <Paper
-            sx={{
-              p: 2,
-              display: "flex",
-              flexDirection: "column",
-              height: 240,
-            }}
-          ></Paper>
-        </Grid>
+
         {/* pie chart */}
-        <Grid item xs={12} md={4} lg={3}>
+
+        <Grid item xs={8}>
           <Paper
             sx={{
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 240,
+              height: 380,
             }}
           >
-            <Piechart chartData={data} text="Employment status" />
+            <SuccessTime times={ChartData} />
+          </Paper>
+        </Grid>
+
+        <Grid item xs={8}>
+          <Paper
+            sx={{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              height: 380,
+            }}
+          >
+            <SalaryGraph salaryInfo={ChartData} />
+          </Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper
+            sx={{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              height: 380,
+            }}
+          >
+            <Piechart employmentStatus={ChartData} />
           </Paper>
         </Grid>
         {/* all graduates */}
