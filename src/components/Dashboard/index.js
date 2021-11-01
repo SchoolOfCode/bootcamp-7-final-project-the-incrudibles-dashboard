@@ -109,13 +109,43 @@ export default function Dashboard() {
                   </IconButton>
                   <Typography
                     component="h1"
-                    variant="h6"
+                    variant="h5"
                     color="inherit"
-                    noWrap
-                    sx={{ flexGrow: 1 }}
+                    alignItems="center"
+                    sx={{ flexGrow: 1, marginLeft: "300px" }}
                   >
                     School of Code Alumni Reporting Dashboard
                   </Typography>
+                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <Link
+                      to="/home"
+                      style={{ textDecoration: "none", color: "white" }}
+                    >
+                      <ListItem button edge="end">
+                        <ListItemIcon>
+                          <DashboardIcon sx={{ color: "white" }} />
+                        </ListItemIcon>
+                        <ListItemText primary="Graduates" />
+                      </ListItem>
+                    </Link>
+                    <Link
+                      to="/administration"
+                      style={{ textDecoration: "none", color: "white" }}
+                    >
+                      <ListItem button>
+                        <ListItemIcon>
+                          <AdminPanelSettingsIcon sx={{ color: "white" }} />
+                        </ListItemIcon>
+                        <ListItemText primary="Partners" />
+                      </ListItem>
+                    </Link>
+                    <ListItem button onClick={() => handleLogout()}>
+                      <ListItemIcon>
+                        <LogoutIcon sx={{ color: "white" }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Logout" />
+                    </ListItem>
+                  </div>
                 </Toolbar>
               </AppBar>
               <Drawer variant="permanent" open={open}>
@@ -132,10 +162,7 @@ export default function Dashboard() {
                   </IconButton>
                 </Toolbar>
                 <Divider />
-                <Link
-                  to="/home"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
+                <Link to="/" style={{ textDecoration: "none", color: "black" }}>
                   <ListItem button>
                     <ListItemIcon>
                       <DashboardIcon />
@@ -194,9 +221,12 @@ export default function Dashboard() {
               >
                 <Toolbar />
                 <Switch>
-                  <Route exact path="/home">
+                  {/* <Route exact path="/home"> */}
+                  <Route exact path="/">
                     <Homepage />
                   </Route>
+
+                  {/* </Route> */}
                   <Route path="/integrations">{/* <Blogs /> */}</Route>
                   <Route path="/reports">{/* <Piechart /> */}</Route>
                   <Route path="/administration">
