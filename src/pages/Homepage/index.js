@@ -27,7 +27,7 @@ export default function Homepage() {
       firstJobDate,
     };
   });
-  console.log("CHartdata", data);
+
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>

@@ -8,12 +8,9 @@ const SuccessTime = ({ times }) => {
   let fourMonths = 0;
 
   const duration = times.map((time) => {
-    console.log("grad date", typeof time.graduationDate.slice(0, 10));
-    console.log("job date", time.firstJobDate.slice(0, 10));
-
     const timeDiff = Math.abs(
       new Date(time.graduationDate.slice(0, 10)) -
-        new Date(time.firstJobDate.slice(0, 10))
+      new Date(time.firstJobDate.slice(0, 10))
     );
     return Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
   });

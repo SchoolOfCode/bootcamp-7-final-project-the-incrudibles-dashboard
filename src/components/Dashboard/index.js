@@ -24,6 +24,25 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { useDataContext } from "../../hooks/useDataContext";
 import { useResponsesData } from "../../hooks/useSWR";
+import FilterListIcon from '@mui/icons-material/FilterList';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import ListSubheader from '@mui/material/ListSubheader';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+
+import GroupsIcon from '@mui/icons-material/Groups';
+import Collapse from '@mui/material/Collapse';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import SendIcon from '@mui/icons-material/Send';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import StarBorder from '@mui/icons-material/StarBorder';
+import { CSVLink } from "react-csv";
+
+import DownloadIcon from '@mui/icons-material/Download';
+
+import convertJsonToCsv from "../../helperFunctions/jsontocsv";
 
 const drawerWidth = 240;
 //
@@ -76,11 +95,17 @@ const mdTheme = createTheme();
 
 export default function Dashboard() {
   const { handleLogout } = useLoginContext();
-  // const { filterDataByCohort, resetFilter, filterDataByName } =
-  //   useDataContext();
-  const [open, setOpen] = useState(true);
+  const { data, filterDataByCohort, resetFilter, filterDataByName } = useDataContext();
+  const [open, setOpen] = useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
+    setOpenList(false)
+  };
+
+  const [openList, setOpenList] = React.useState(false);
+
+  const handleClick = () => {
+    if (open) { setOpenList(!openList); }
   };
 
   return (
@@ -158,50 +183,123 @@ export default function Dashboard() {
               </IconButton>
             </Toolbar>
             <Divider />
-            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-              <ListItem button>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-              </ListItem>
-            </Link>
-            <Link
-              to="/reports"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <ListItem button>
-                <ListItemIcon>
-                  <BarChartIcon />
-                </ListItemIcon>
-                <ListItemText primary="Reports" />
-              </ListItem>
-            </Link>
+            <List
+              sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+              component="nav"
+              aria-labelledby="nested-list-subheader"
 
-            <ListItem button>
-              <ListItemIcon>
-                <LayersIcon />
-              </ListItemIcon>
-              <ListItemText primary="Integrations" />
-            </ListItem>
-            <Link
-              to="/administration"
-              style={{ textDecoration: "none", color: "black" }}
             >
-              <ListItem button>
+
+
+              <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                  <AdminPanelSettingsIcon />
+                  <FilterListIcon />
                 </ListItemIcon>
-                <ListItemText primary="Administration" />
-              </ListItem>
-            </Link>
-            <Divider />
-            <ListItem button onClick={() => handleLogout()}>
-              <ListItemIcon>
-                <LogoutIcon />
-              </ListItemIcon>
-              <ListItemText primary="Logout" />
-            </ListItem>
+                <ListItemText primary="Cohorts" />
+                {openList ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openList} timeout="auto" unmountOnExit>
+
+                <List component="div" disablePadding>
+                  <ListItemButton onClick={() => filterDataByCohort(1)
+                  } sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <GroupsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Cohort 1" />
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton onClick={() => filterDataByCohort(2)
+                  } sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <GroupsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Cohort 2" />
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton onClick={() => filterDataByCohort(3)
+                  } sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <GroupsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Cohort 3" />
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton onClick={() => filterDataByCohort(4)
+                  } sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <GroupsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Cohort 4" />
+                  </ListItemButton>
+                </List>
+                <List component="div" disablePadding>
+                  <ListItemButton onClick={() => filterDataByCohort(5)
+                  } sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <GroupsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Cohort 5" />
+                  </ListItemButton>
+                </List>
+                <List component="div" disablePadding>
+                  <ListItemButton onClick={() => filterDataByCohort(6)
+                  } sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <GroupsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Cohort 6" />
+                  </ListItemButton>
+                </List>
+                <List component="div" disablePadding>
+                  <ListItemButton onClick={() => filterDataByCohort(7)
+                  } sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <GroupsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Cohort 7" />
+                  </ListItemButton>
+                </List>
+                <List component="div" disablePadding>
+                  <ListItemButton onClick={() => resetFilter()
+                  } sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <GroupsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="All Cohorts" />
+                  </ListItemButton>
+                </List>
+              </Collapse>
+
+              <Divider />
+
+              <ListItemButton >
+
+
+
+                <ListItemIcon>
+                  <DownloadIcon />
+                </ListItemIcon>
+                <CSVLink
+                  data={convertJsonToCsv(data)}
+                  filename={"graduate_responses.csv"}
+                >
+                  Export
+                </CSVLink>
+
+              </ListItemButton>
+
+
+
+            </List>
+
+
           </Drawer>
           <Box
             component="main"
