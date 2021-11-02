@@ -4,7 +4,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
-import { Collapse, Typography } from "@mui/material";
+import { Collapse } from "@mui/material";
 import ResponseView from "../ResponseView";
 
 export default function ResponseRow({ responseData }) {
