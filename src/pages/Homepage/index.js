@@ -13,8 +13,7 @@ import SalaryGraph from "../../components/SalaryGraph";
 import SuccessTime from "../../components/SuccessTime";
 
 export default function Homepage() {
-  const { data, filterDataByCohort, resetFilter, filterDataByName } =
-    useDataContext();
+  const { data } = useDataContext();
   const ChartData = data.map((row) => {
     const graduationDate = row.graduation_date;
     const firstJobDate = row.first_job_date;
@@ -33,7 +32,7 @@ export default function Homepage() {
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper sx={{ p: 2, display: "flex", flexDirection: "row" }}>
+          {/* <Paper sx={{ p: 2, display: "flex", flexDirection: "row" }}>
             <input
               type="text"
               onChange={(e) => filterDataByName(e.target.value)}
@@ -52,7 +51,7 @@ export default function Homepage() {
             >
               Download CSV
             </CSVLink>
-          </Paper>
+          </Paper> */}
         </Grid>
         {/* selection */}
         <Grid item xs={4}>

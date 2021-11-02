@@ -22,7 +22,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import { DataProvider } from "../../hooks/useDataContext";
+import { useDataContext } from "../../hooks/useDataContext";
 import { useResponsesData } from "../../hooks/useSWR";
 
 const drawerWidth = 240;
@@ -76,8 +76,8 @@ const mdTheme = createTheme();
 
 export default function Dashboard() {
   const { handleLogout } = useLoginContext();
-  const { isLoading } = useResponsesData();
-
+  // const { filterDataByCohort, resetFilter, filterDataByName } =
+  //   useDataContext();
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -86,158 +86,151 @@ export default function Dashboard() {
   return (
     <Router>
       <ThemeProvider theme={mdTheme}>
-        {!isLoading && (
-          <DataProvider>
-            <Box sx={{ display: "flex" }}>
-              <CssBaseline />
-              <AppBar position="absolute" open={open}>
-                <Toolbar
-                  sx={{
-                    pr: "24px", // keep right padding when drawer closed
-                  }}
-                >
-                  <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="open drawer"
-                    onClick={toggleDrawer}
-                    sx={{
-                      marginRight: "36px",
-                      ...(open && { display: "none" }),
-                    }}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                  <Typography
-                    component="h1"
-                    variant="h5"
-                    color="inherit"
-                    alignItems="center"
-                    sx={{ flexGrow: 1, marginLeft: "300px" }}
-                  >
-                    School of Code Alumni Reporting Dashboard
-                  </Typography>
-                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <Link
-                      to="/"
-                      style={{ textDecoration: "none", color: "white" }}
-                    >
-                      <ListItem button edge="end">
-                        <ListItemIcon>
-                          <DashboardIcon sx={{ color: "white" }} />
-                        </ListItemIcon>
-                        <ListItemText primary="Graduates" />
-                      </ListItem>
-                    </Link>
-                    <Link
-                      to="/administration"
-                      style={{ textDecoration: "none", color: "white" }}
-                    >
-                      <ListItem button>
-                        <ListItemIcon>
-                          <AdminPanelSettingsIcon sx={{ color: "white" }} />
-                        </ListItemIcon>
-                        <ListItemText primary="Partners" />
-                      </ListItem>
-                    </Link>
-                    <ListItem button onClick={() => handleLogout()}>
-                      <ListItemIcon>
-                        <LogoutIcon sx={{ color: "white" }} />
-                      </ListItemIcon>
-                      <ListItemText primary="Logout" />
-                    </ListItem>
-                  </div>
-                </Toolbar>
-              </AppBar>
-              <Drawer variant="permanent" open={open}>
-                <Toolbar
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "flex-end",
-                    px: [1],
-                  }}
-                >
-                  <IconButton onClick={toggleDrawer}>
-                    <ChevronLeftIcon />
-                  </IconButton>
-                </Toolbar>
-                <Divider />
-                <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-                  <ListItem button>
+        <Box sx={{ display: "flex" }}>
+          <CssBaseline />
+          <AppBar position="absolute" open={open}>
+            <Toolbar
+              sx={{
+                pr: "24px", // keep right padding when drawer closed
+              }}
+            >
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={toggleDrawer}
+                sx={{
+                  marginRight: "36px",
+                  ...(open && { display: "none" }),
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                component="h1"
+                variant="h5"
+                color="inherit"
+                alignItems="center"
+                sx={{ flexGrow: 1, marginLeft: "300px" }}
+              >
+                School of Code Alumni Reporting Dashboard
+              </Typography>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                  <ListItem button edge="end">
                     <ListItemIcon>
-                      <DashboardIcon />
+                      <DashboardIcon sx={{ color: "white" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Home" />
+                    <ListItemText primary="Graduates" />
                   </ListItem>
                 </Link>
-                <Link
-                  to="/reports"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <ListItem button>
-                    <ListItemIcon>
-                      <BarChartIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Reports" />
-                  </ListItem>
-                </Link>
-
-                <ListItem button>
-                  <ListItemIcon>
-                    <LayersIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Integrations" />
-                </ListItem>
                 <Link
                   to="/administration"
-                  style={{ textDecoration: "none", color: "black" }}
+                  style={{ textDecoration: "none", color: "white" }}
                 >
                   <ListItem button>
                     <ListItemIcon>
-                      <AdminPanelSettingsIcon />
+                      <AdminPanelSettingsIcon sx={{ color: "white" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Administration" />
+                    <ListItemText primary="Partners" />
                   </ListItem>
                 </Link>
-                <Divider />
                 <ListItem button onClick={() => handleLogout()}>
                   <ListItemIcon>
-                    <LogoutIcon />
+                    <LogoutIcon sx={{ color: "white" }} />
                   </ListItemIcon>
                   <ListItemText primary="Logout" />
                 </ListItem>
-              </Drawer>
-              <Box
-                component="main"
-                sx={{
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === "light"
-                      ? theme.palette.grey[100]
-                      : theme.palette.grey[900],
-                  flexGrow: 1,
-                  height: "100vh",
-                  overflow: "auto",
-                }}
-              >
-                <Toolbar />
-                <Switch>
-                  {/* <Route exact path="/home"> */}
-                  <Route exact path="/">
-                    <Homepage />
-                  </Route>
+              </div>
+            </Toolbar>
+          </AppBar>
+          <Drawer variant="permanent" open={open}>
+            <Toolbar
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+                px: [1],
+              }}
+            >
+              <IconButton onClick={toggleDrawer}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </Toolbar>
+            <Divider />
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <ListItem button>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+              </ListItem>
+            </Link>
+            <Link
+              to="/reports"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <BarChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Reports" />
+              </ListItem>
+            </Link>
 
-                  {/* </Route> */}
-                  <Route path="/integrations">{/* <Blogs /> */}</Route>
-                  <Route path="/reports">{/* <Piechart /> */}</Route>
-                  <Route path="/administration">
-                    <AdminPage />
-                  </Route>
-                </Switch>
-              </Box>
-            </Box>
-          </DataProvider>
-        )}
+            <ListItem button>
+              <ListItemIcon>
+                <LayersIcon />
+              </ListItemIcon>
+              <ListItemText primary="Integrations" />
+            </ListItem>
+            <Link
+              to="/administration"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <AdminPanelSettingsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Administration" />
+              </ListItem>
+            </Link>
+            <Divider />
+            <ListItem button onClick={() => handleLogout()}>
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItem>
+          </Drawer>
+          <Box
+            component="main"
+            sx={{
+              backgroundColor: (theme) =>
+                theme.palette.mode === "light"
+                  ? theme.palette.grey[100]
+                  : theme.palette.grey[900],
+              flexGrow: 1,
+              height: "100vh",
+              overflow: "auto",
+            }}
+          >
+            <Toolbar />
+            <Switch>
+              {/* <Route exact path="/home"> */}
+              <Route exact path="/">
+                <Homepage />
+              </Route>
+
+              {/* </Route> */}
+              <Route path="/integrations">{/* <Blogs /> */}</Route>
+              <Route path="/reports">{/* <Piechart /> */}</Route>
+              <Route path="/administration">
+                <AdminPage />
+              </Route>
+            </Switch>
+          </Box>
+        </Box>
       </ThemeProvider>
     </Router>
   );
