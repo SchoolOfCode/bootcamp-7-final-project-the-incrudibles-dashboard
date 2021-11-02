@@ -8,6 +8,7 @@ import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
 import SalaryOverTime from "../SalaryOverTime";
 import SalaryCompare from "../SalaryCompare";
 import GradJobSatisfaction from "../GradJobSatisfaction";
+import ResponseRow from "../ResponseTableRow";
 
 export default function GradView({ gradData }) {
   const latestResponse = getMostRecentResponse(gradData.responses);
@@ -48,7 +49,8 @@ export default function GradView({ gradData }) {
           >
             <Table size="small" aria-label="purchases">
               <TableHead>
-                <TableCell align="center">
+                <TableCell align="center"></TableCell>
+                <TableCell align="left">
                   <Typography gutterBottom component="div">
                     Survey responses
                   </Typography>
@@ -56,11 +58,7 @@ export default function GradView({ gradData }) {
               </TableHead>
               <TableBody>
                 {gradData.responses.map((response) => (
-                  <TableRow>
-                    <TableCell align="center">
-                      {response.timestamp.slice(0, 10)}
-                    </TableCell>
-                  </TableRow>
+                  <ResponseRow responseData={response} />
                 ))}
               </TableBody>
             </Table>
@@ -69,14 +67,13 @@ export default function GradView({ gradData }) {
         {/* job satisfaction */}
         <Grid item xs={12} md={3} lg={3}>
           <div
-            sx=
-            {{
+            sx={{
               p: 2,
               display: "flex",
               flexDirection: "column",
               height: 240,
             }}
-            >
+          >
             <SalaryCompare gradData={gradData} />
             <GradJobSatisfaction gradData={gradData} />
           </div>
@@ -93,12 +90,6 @@ export default function GradView({ gradData }) {
           >
             <SalaryOverTime gradData={gradData} />
           </Paper>
-        </Grid>
-        {/* all graduates */}
-        <Grid item xs={12}>
-          <Paper
-            sx={{ p: 2, display: "flex", flexDirection: "column" }}
-          ></Paper>
         </Grid>
       </Grid>
     </Box>
