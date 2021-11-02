@@ -37,7 +37,11 @@ export default function GradTable({ data }) {
         </TableHead>
         <TableBody>
           {data.map((row) => (
-            <GradTableRow key={row.gradute_name} gradData={row} />
+            <GradTableRow
+              key={row.gradute_name}
+              id={`#${row.gradute_name}`}
+              gradData={row}
+            />
           ))}
         </TableBody>
       </Table>

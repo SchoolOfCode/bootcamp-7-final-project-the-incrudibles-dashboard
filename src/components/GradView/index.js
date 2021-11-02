@@ -5,17 +5,23 @@ import TableRow from "@mui/material/TableRow";
 import { Grid, Paper, TableBody, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
-import JobSatisfaction from "../JobSatisfaction";
+import SalaryOverTime from "../SalaryOverTime";
+import SalaryCompare from "../SalaryCompare";
+import GradJobSatisfaction from "../GradJobSatisfaction";
 
 export default function GradView({ gradData }) {
   const latestResponse = getMostRecentResponse(gradData.responses);
 
   return (
-    <Box sx={{ margin: 1 }}>
+    <Box sx={{ margin: 1, height: "65vh" }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "row" }}>
-            <Typography gutterBottom component="div">
+            <Typography
+              gutterBottom
+              component="div"
+              sx={{ fontWeight: "bold" }}
+            >
               {latestResponse.current_employer
                 ? `${
                     gradData.graduate_name.split(" ")[0]
@@ -31,7 +37,7 @@ export default function GradView({ gradData }) {
           </Paper>
         </Grid>
         {/* selection */}
-        <Grid item xs={12} md={4} lg={3}>
+        <Grid item xs={12} md={3} lg={3}>
           <Paper
             sx={{
               p: 2,
@@ -61,32 +67,32 @@ export default function GradView({ gradData }) {
           </Paper>
         </Grid>
         {/* job satisfaction */}
-        <Grid item xs={12} md={4} lg={4}>
+        <Grid item xs={12} md={3} lg={3}>
+          <div
+            sx=
+            {{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              height: 240,
+            }}
+            >
+            <SalaryCompare gradData={gradData} />
+            <GradJobSatisfaction gradData={gradData} />
+          </div>
+        </Grid>
+        {/* salary over time */}
+        <Grid item xs={12} md={6} lg={6}>
           <Paper
             sx={{
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 240,
+              height: 360,
             }}
           >
-            {latestResponse.job_satisfaction && (
-              <JobSatisfaction
-                satisfactionIndex={[latestResponse.job_satisfaction]}
-              />
-            )}
+            <SalaryOverTime gradData={gradData} />
           </Paper>
-        </Grid>
-        {/* pie chart */}
-        <Grid item xs={12} md={4} lg={4}>
-          <Paper
-            sx={{
-              p: 2,
-              display: "flex",
-              flexDirection: "column",
-              height: 240,
-            }}
-          ></Paper>
         </Grid>
         {/* all graduates */}
         <Grid item xs={12}>
