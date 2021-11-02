@@ -119,7 +119,7 @@ export default function Dashboard() {
                   </Typography>
                   <div style={{ display: "flex", justifyContent: "flex-end" }}>
                     <Link
-                      to="/home"
+                      to="/"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       <ListItem button edge="end">
