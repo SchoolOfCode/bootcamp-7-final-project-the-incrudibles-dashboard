@@ -6,14 +6,28 @@ import Image2 from "../../images/2.png";
 import Image3 from "../../images/3.png";
 import Image4 from "../../images/4.png";
 import Image5 from "../../images/5.png";
+import Image0 from "../../images/0.png";
 
 export default function GradJobSatisfaction({ gradData }) {
   const currentSatisfaction = getMostRecentResponse(
     gradData.responses
   ).job_satisfaction;
 
+  const formattedSatisfaction = currentSatisfaction ? currentSatisfaction : 0;
+
   function HappinessIndicator({ score }) {
     switch (score) {
+      case 0:
+        return (
+          <img
+            src={Image0}
+            alt="No data on job satisfaction"
+            style={{
+              marginTop: 8,
+              maxWidth: "80%",
+            }}
+          />
+        );
       case 1:
         return (
           <img
@@ -86,7 +100,7 @@ export default function GradJobSatisfaction({ gradData }) {
     >
       <Box sx={{ color: "text.secondary" }}>Current job satisfaction</Box>
       <Box sx={{ color: "text.secondary", display: "inline", fontSize: 12 }}>
-        <HappinessIndicator score={currentSatisfaction} />
+        <HappinessIndicator score={formattedSatisfaction} />
       </Box>
     </Box>
   );
