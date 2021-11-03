@@ -25,16 +25,36 @@ export default function GradTable({ gradData }) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          <Typography>{gradData.graduate_name}</Typography>
+          <Typography sx={{ typography: "subtitle2", fontSize: 16 }}>
+            {gradData.graduate_name}
+          </Typography>
         </TableCell>
         <TableCell align="left">
-          <Typography>{gradData.cohort}</Typography>
+          <Typography sx={{ typography: "subtitle2", fontSize: 16 }}>
+            {gradData.cohort}
+          </Typography>
         </TableCell>
         <TableCell align="left">
-          <Typography> {latestResponse.current_employer}</Typography>
+          <Typography sx={{ typography: "subtitle2", fontSize: 16 }}>
+            {" "}
+            {latestResponse.current_employer}
+          </Typography>
+        </TableCell>
+        <TableCell align="left">
+          <Typography sx={{ typography: "subtitle2", fontSize: 16 }}>
+            {latestResponse.current_position}
+          </Typography>
+        </TableCell>
+        <TableCell align="left">
+          <Typography sx={{ typography: "subtitle2", fontSize: 16 }}>
+            {latestResponse.job_satisfaction}
+          </Typography>
         </TableCell>
         <TableCell align="right">
-          <Typography> {latestResponse.current_salary}</Typography>
+          <Typography sx={{ typography: "subtitle2", fontSize: 16 }}>
+            {" "}
+            {latestResponse.current_salary}
+          </Typography>
         </TableCell>
       </TableRow>
       <TableRow>
