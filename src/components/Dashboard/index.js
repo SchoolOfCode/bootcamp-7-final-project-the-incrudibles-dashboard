@@ -82,9 +82,11 @@ const Drawer = styled(MuiDrawer, {
 const mdTheme = createTheme();
 
 export default function Dashboard() {
+
   const { handleLogout } = useLoginContext();
   const { data, resetFilter, filterDataByName } = useDataContext();
   const [open, setOpen] = useState(false);
+
   const toggleDrawer = () => {
     setOpen(!open);
     setOpenList(false)
@@ -158,24 +160,13 @@ export default function Dashboard() {
             </Toolbar>
           </AppBar>
           <Drawer variant="permanent" open={open}>
-            <Toolbar
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                px: [1],
-              }}
-            >
+            <Toolbar sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end", px: [1], }} >
               <IconButton onClick={toggleDrawer}>
                 <ChevronLeftIcon />
               </IconButton>
             </Toolbar>
             <Divider />
-            <List
-              sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-              component="nav"
-              aria-labelledby="nested-list-subheader"
-            >
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader" >
               <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
                   <FilterListIcon />
@@ -194,8 +185,7 @@ export default function Dashboard() {
                 <CohortFilter cohortNum={7} key={7} />
 
                 <List component="div" disablePadding>
-                  <ListItemButton onClick={() => resetFilter()
-                  } sx={{ pl: 4 }}>
+                  <ListItemButton onClick={() => resetFilter()} sx={{ pl: 4 }}>
                     <ListItemIcon>
                       <GroupsIcon />
                     </ListItemIcon>
@@ -205,51 +195,32 @@ export default function Dashboard() {
               </Collapse>
 
               <Divider />
-
               <ListItemButton >
-
-
-
                 <ListItemIcon>
                   <DownloadIcon />
                 </ListItemIcon>
-                <CSVLink
-                  data={convertJsonToCsv(data)}
-                  filename={"graduate_responses.csv"}
-                >
-                  Export
-                </CSVLink>
-
+                <CSVLink data={convertJsonToCsv(data)} filename={"graduate_responses.csv"}>Export</CSVLink>
               </ListItemButton>
-
-
 
             </List>
 
-
+            <Divider />
           </Drawer>
-          <Box
-            component="main"
-            sx={{
-              backgroundColor: (theme) =>
-                theme.palette.mode === "light"
-                  ? theme.palette.grey[100]
-                  : theme.palette.grey[900],
-              flexGrow: 1,
-              height: "100vh",
-              overflow: "auto",
-            }}
+          <Box component="main" sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: "100vh",
+            overflow: "auto",
+          }}
           >
             <Toolbar />
             <Switch>
-              {/* <Route exact path="/home"> */}
               <Route exact path="/">
                 <Homepage />
               </Route>
-
-              {/* </Route> */}
-              <Route path="/integrations">{/* <Blogs /> */}</Route>
-              <Route path="/reports">{/* <Piechart /> */}</Route>
               <Route path="/administration">
                 <AdminPage />
               </Route>
