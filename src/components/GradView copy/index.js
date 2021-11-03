@@ -90,6 +90,12 @@ export default function GradView({ gradData }) {
             <SalaryOverTime gradData={gradData} />
           </Paper>
         </Grid>
+        {/* all graduates */}
+        <Grid item xs={12}>
+          <Paper
+            sx={{ p: 2, display: "flex", flexDirection: "column" }}
+          ></Paper>
+        </Grid>
       </Grid>
     </Box>
   );
