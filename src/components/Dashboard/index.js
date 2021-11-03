@@ -31,8 +31,9 @@ import { CSVLink } from "react-csv";
 import DownloadIcon from '@mui/icons-material/Download';
 import convertJsonToCsv from "../../helperFunctions/jsontocsv";
 import CohortFilter from "../CohortFilter";
+import NameSearch from "../NameSearch";
 
-const drawerWidth = 240;
+const drawerWidth = 320;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -70,7 +71,7 @@ const Drawer = styled(MuiDrawer, {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      width: theme.spacing(7),
+      width: theme.spacing(5),
       [theme.breakpoints.up("sm")]: {
         width: theme.spacing(9),
       },
@@ -83,7 +84,7 @@ const mdTheme = createTheme();
 export default function Dashboard() {
 
   const { handleLogout } = useLoginContext();
-  const { data, resetFilter, filterDataByName } = useDataContext();
+  const { data, resetFilter } = useDataContext();
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -168,7 +169,7 @@ export default function Dashboard() {
               </IconButton>
             </Toolbar>
 
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader" >
+            <List sx={{ paddingLeft: "3px", width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader" >
               <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
                   <FilterListIcon />
@@ -195,6 +196,8 @@ export default function Dashboard() {
                   </ListItemButton>
                 </List>
               </Collapse>
+
+              <NameSearch />
 
               <ListItemButton >
                 <ListItemIcon>
