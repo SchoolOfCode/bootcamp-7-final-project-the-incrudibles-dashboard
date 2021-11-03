@@ -7,9 +7,10 @@ import { Paper, Typography } from "@mui/material";
 import GradTableRow from "../GradTableRow";
 
 export default function GradTable({ data }) {
+
   return (
     <Paper>
-      <Table aria-label="collapsible table">
+      <Table aria-label="collapsible table" >
         <TableHead>
           <TableRow>
             <TableCell />
@@ -37,10 +38,11 @@ export default function GradTable({ data }) {
         </TableHead>
         <TableBody>
           {data.map((row) => (
-            <GradTableRow key={row.gradute_name} gradData={row} />
+            <GradTableRow key={row.id} gradData={row} />
           ))}
         </TableBody>
       </Table>
     </Paper>
+
   );
 }

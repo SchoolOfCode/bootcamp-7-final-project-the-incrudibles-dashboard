@@ -18,34 +18,21 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import LayersIcon from "@mui/icons-material/Layers";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { useDataContext } from "../../hooks/useDataContext";
-import { useResponsesData } from "../../hooks/useSWR";
 import FilterListIcon from '@mui/icons-material/FilterList';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
-
 import GroupsIcon from '@mui/icons-material/Groups';
 import Collapse from '@mui/material/Collapse';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
 import { CSVLink } from "react-csv";
-
 import DownloadIcon from '@mui/icons-material/Download';
-
 import convertJsonToCsv from "../../helperFunctions/jsontocsv";
 
 const drawerWidth = 240;
-//
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -102,7 +89,7 @@ export default function Dashboard() {
     setOpenList(false)
   };
 
-  const [openList, setOpenList] = React.useState(false);
+  const [openList, setOpenList] = useState(false);
 
   const handleClick = () => {
     if (open) { setOpenList(!openList); }
@@ -187,10 +174,7 @@ export default function Dashboard() {
               sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
               component="nav"
               aria-labelledby="nested-list-subheader"
-
             >
-
-
               <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
                   <FilterListIcon />
@@ -199,7 +183,6 @@ export default function Dashboard() {
                 {openList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={openList} timeout="auto" unmountOnExit>
-
                 <List component="div" disablePadding>
                   <ListItemButton onClick={() => filterDataByCohort(1)
                   } sx={{ pl: 4 }}>
@@ -209,7 +192,6 @@ export default function Dashboard() {
                     <ListItemText primary="Cohort 1" />
                   </ListItemButton>
                 </List>
-
                 <List component="div" disablePadding>
                   <ListItemButton onClick={() => filterDataByCohort(2)
                   } sx={{ pl: 4 }}>
