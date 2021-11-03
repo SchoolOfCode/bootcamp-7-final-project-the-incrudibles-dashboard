@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -131,6 +130,7 @@ export default function Dashboard() {
                 School of Code Alumni Reporting Dashboard
               </Typography>
               <div style={{ display: "flex", justifyContent: "flex-end" }}>
+
                 <Link to="/" style={{ textDecoration: "none", color: "white" }}>
                   <ListItem button edge="end">
                     <ListItemIcon>
@@ -139,6 +139,7 @@ export default function Dashboard() {
                     <ListItemText primary="Graduates" />
                   </ListItem>
                 </Link>
+
                 <Link
                   to="/administration"
                   style={{ textDecoration: "none", color: "white" }}
@@ -150,6 +151,7 @@ export default function Dashboard() {
                     <ListItemText primary="Partners" />
                   </ListItem>
                 </Link>
+
                 <ListItem button onClick={() => handleLogout()}>
                   <ListItemIcon>
                     <LogoutIcon sx={{ color: "white" }} />
@@ -165,7 +167,7 @@ export default function Dashboard() {
                 <ChevronLeftIcon />
               </IconButton>
             </Toolbar>
-            <Divider />
+
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader" >
               <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
@@ -194,17 +196,14 @@ export default function Dashboard() {
                 </List>
               </Collapse>
 
-              <Divider />
               <ListItemButton >
                 <ListItemIcon>
                   <DownloadIcon />
                 </ListItemIcon>
                 <CSVLink data={convertJsonToCsv(data)} filename={"graduate_responses.csv"}>Export</CSVLink>
               </ListItemButton>
-
             </List>
 
-            <Divider />
           </Drawer>
           <Box component="main" sx={{
             backgroundColor: (theme) =>
