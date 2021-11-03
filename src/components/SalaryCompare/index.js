@@ -46,16 +46,24 @@ export default function SalaryCompare({ gradData }) {
         </Box>
         <Box
           sx={{
-            color: "success.dark",
+            color:
+              currentSalary > gradData.responses[0].current_salary
+                ? "success.dark"
+                : "#800500",
             display: "inline",
             fontWeight: "medium",
             mx: 0.5,
           }}
         >
-          +18.77%
+          {currentSalary >= gradData.responses[0].current_salary ? "+" : "-"}
+          {(
+            (currentSalary / gradData.responses[0].current_salary) * 100 -
+            100
+          ).toFixed(2)}
+          %
         </Box>
         <Box sx={{ color: "text.secondary", display: "inline", fontSize: 12 }}>
-          vs. pre-bootcamp
+          vs. first salary
         </Box>
       </Box>
     </ThemeProvider>
