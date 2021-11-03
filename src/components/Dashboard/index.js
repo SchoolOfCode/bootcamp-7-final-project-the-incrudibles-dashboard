@@ -20,18 +20,20 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { useDataContext } from "../../hooks/useDataContext";
-import FilterListIcon from '@mui/icons-material/FilterList';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import GroupsIcon from '@mui/icons-material/Groups';
-import Collapse from '@mui/material/Collapse';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
+import FilterListIcon from "@mui/icons-material/FilterList";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import GroupsIcon from "@mui/icons-material/Groups";
+import Collapse from "@mui/material/Collapse";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import { CSVLink } from "react-csv";
-import DownloadIcon from '@mui/icons-material/Download';
+import DownloadIcon from "@mui/icons-material/Download";
 import convertJsonToCsv from "../../helperFunctions/jsontocsv";
 import CohortFilter from "../CohortFilter";
 import NameSearch from "../NameSearch";
+import BusinessIcon from "@mui/icons-material/Business";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 
 const drawerWidth = 320;
 
@@ -82,20 +84,21 @@ const Drawer = styled(MuiDrawer, {
 const mdTheme = createTheme();
 
 export default function Dashboard() {
-
   const { handleLogout } = useLoginContext();
   const { data, resetFilter } = useDataContext();
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = () => {
     setOpen(!open);
-    setOpenList(false)
+    setOpenList(false);
   };
 
   const [openList, setOpenList] = useState(false);
 
   const handleClick = () => {
-    if (open) { setOpenList(!openList); }
+    if (open) {
+      setOpenList(!openList);
+    }
   };
 
   return (
@@ -104,18 +107,14 @@ export default function Dashboard() {
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
           <AppBar position="absolute" open={open}>
-            <Toolbar
-              sx={{
-                pr: "24px", // keep right padding when drawer closed
-              }}
-            >
+            <Toolbar sx={{ backgroundColor: "white" }}>
               <IconButton
                 edge="start"
                 color="inherit"
                 aria-label="open drawer"
                 onClick={toggleDrawer}
                 sx={{
-                  marginRight: "36px",
+                  color: "#2E3033",
                   ...(open && { display: "none" }),
                 }}
               >
@@ -123,19 +122,23 @@ export default function Dashboard() {
               </IconButton>
               <Typography
                 component="h1"
-                variant="h5"
-                color="inherit"
-                alignItems="center"
-                sx={{ flexGrow: 1, marginLeft: "300px" }}
+                variant="h6"
+                color="#2E3033"
+                sx={{
+                  flexGrow: 1,
+                  fontWeight: 600,
+                }}
               >
                 School of Code Alumni Reporting Dashboard
               </Typography>
               <div style={{ display: "flex", justifyContent: "flex-end" }}>
-
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <Link
+                  to="/"
+                  style={{ textDecoration: "none", color: "#2E3033" }}
+                >
                   <ListItem button edge="end">
                     <ListItemIcon>
-                      <DashboardIcon sx={{ color: "white" }} />
+                      <PeopleAltIcon sx={{ color: "#2E3033" }} />
                     </ListItemIcon>
                     <ListItemText primary="Graduates" />
                   </ListItem>
@@ -143,33 +146,57 @@ export default function Dashboard() {
 
                 <Link
                   to="/administration"
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "#2E3033" }}
                 >
                   <ListItem button>
                     <ListItemIcon>
-                      <AdminPanelSettingsIcon sx={{ color: "white" }} />
+                      <BusinessIcon sx={{ color: "#2E3033" }} />
                     </ListItemIcon>
                     <ListItemText primary="Partners" />
                   </ListItem>
                 </Link>
-
+                <div
+                  style={{
+                    backgroundColor: "#2E3033",
+                    height: "45px",
+                    width: "5px",
+                    marginRight: "3px",
+                    marginLeft: "30px",
+                  }}
+                ></div>
                 <ListItem button onClick={() => handleLogout()}>
                   <ListItemIcon>
-                    <LogoutIcon sx={{ color: "white" }} />
+                    <LogoutIcon sx={{ color: "#2E3033" }} />
                   </ListItemIcon>
-                  <ListItemText primary="Logout" />
+                  <ListItemText primary="Logout" sx={{ color: "#2E3033" }} />
                 </ListItem>
               </div>
             </Toolbar>
           </AppBar>
           <Drawer variant="permanent" open={open}>
-            <Toolbar sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end", px: [1], }} >
+            <Toolbar
+              sx={{
+                display: "flex",
+                alignItems: "left",
+                justifyContent: "flex-end",
+                px: [1],
+              }}
+            >
               <IconButton onClick={toggleDrawer}>
                 <ChevronLeftIcon />
               </IconButton>
             </Toolbar>
 
-            <List sx={{ paddingLeft: "3px", width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader" >
+            <List
+              sx={{
+                paddingLeft: "3px",
+                width: "100%",
+                maxWidth: 360,
+                bgcolor: "background.paper",
+              }}
+              component="nav"
+              aria-labelledby="nested-list-subheader"
+            >
               <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
                   <FilterListIcon />
@@ -178,7 +205,6 @@ export default function Dashboard() {
                 {openList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={openList} timeout="auto" unmountOnExit>
-
                 <CohortFilter cohortNum={1} key={1} />
                 <CohortFilter cohortNum={2} key={2} />
                 <CohortFilter cohortNum={3} key={3} />
@@ -199,24 +225,30 @@ export default function Dashboard() {
 
               <NameSearch />
 
-              <ListItemButton >
+              <ListItemButton>
                 <ListItemIcon>
                   <DownloadIcon />
                 </ListItemIcon>
-                <CSVLink data={convertJsonToCsv(data)} filename={"graduate_responses.csv"}>Export</CSVLink>
+                <CSVLink
+                  data={convertJsonToCsv(data)}
+                  filename={"graduate_responses.csv"}
+                >
+                  Export
+                </CSVLink>
               </ListItemButton>
             </List>
-
           </Drawer>
-          <Box component="main" sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
-          }}
+          <Box
+            component="main"
+            sx={{
+              backgroundColor: (theme) =>
+                theme.palette.mode === "light"
+                  ? theme.palette.grey[100]
+                  : theme.palette.grey[900],
+              flexGrow: 1,
+              height: "100vh",
+              overflow: "auto",
+            }}
           >
             <Toolbar />
             <Switch>
