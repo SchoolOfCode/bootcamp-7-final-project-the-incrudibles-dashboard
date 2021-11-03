@@ -31,6 +31,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { CSVLink } from "react-csv";
 import DownloadIcon from '@mui/icons-material/Download';
 import convertJsonToCsv from "../../helperFunctions/jsontocsv";
+import CohortFilter from "../CohortFilter";
 
 const drawerWidth = 240;
 
@@ -82,7 +83,7 @@ const mdTheme = createTheme();
 
 export default function Dashboard() {
   const { handleLogout } = useLoginContext();
-  const { data, filterDataByCohort, resetFilter, filterDataByName } = useDataContext();
+  const { data, resetFilter, filterDataByName } = useDataContext();
   const [open, setOpen] = useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -183,71 +184,15 @@ export default function Dashboard() {
                 {openList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={openList} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItemButton onClick={() => filterDataByCohort(1)
-                  } sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <GroupsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cohort 1" />
-                  </ListItemButton>
-                </List>
-                <List component="div" disablePadding>
-                  <ListItemButton onClick={() => filterDataByCohort(2)
-                  } sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <GroupsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cohort 2" />
-                  </ListItemButton>
-                </List>
 
-                <List component="div" disablePadding>
-                  <ListItemButton onClick={() => filterDataByCohort(3)
-                  } sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <GroupsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cohort 3" />
-                  </ListItemButton>
-                </List>
+                <CohortFilter cohortNum={1} key={1} />
+                <CohortFilter cohortNum={2} key={2} />
+                <CohortFilter cohortNum={3} key={3} />
+                <CohortFilter cohortNum={4} key={4} />
+                <CohortFilter cohortNum={5} key={5} />
+                <CohortFilter cohortNum={6} key={6} />
+                <CohortFilter cohortNum={7} key={7} />
 
-                <List component="div" disablePadding>
-                  <ListItemButton onClick={() => filterDataByCohort(4)
-                  } sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <GroupsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cohort 4" />
-                  </ListItemButton>
-                </List>
-                <List component="div" disablePadding>
-                  <ListItemButton onClick={() => filterDataByCohort(5)
-                  } sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <GroupsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cohort 5" />
-                  </ListItemButton>
-                </List>
-                <List component="div" disablePadding>
-                  <ListItemButton onClick={() => filterDataByCohort(6)
-                  } sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <GroupsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cohort 6" />
-                  </ListItemButton>
-                </List>
-                <List component="div" disablePadding>
-                  <ListItemButton onClick={() => filterDataByCohort(7)
-                  } sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <GroupsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cohort 7" />
-                  </ListItemButton>
-                </List>
                 <List component="div" disablePadding>
                   <ListItemButton onClick={() => resetFilter()
                   } sx={{ pl: 4 }}>
