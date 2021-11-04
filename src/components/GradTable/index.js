@@ -37,7 +37,7 @@ export default function GradTable({ data }) {
                 Current Employer
               </Typography>
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="left">
               <Typography
                 sx={{ typography: "subtitle2", fontSize: 16, fontWeight: 800 }}
                 component="div"
@@ -45,7 +45,7 @@ export default function GradTable({ data }) {
                 Current Role
               </Typography>
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="center">
               <Typography
                 sx={{ typography: "subtitle2", fontSize: 16, fontWeight: 800 }}
                 component="div"
