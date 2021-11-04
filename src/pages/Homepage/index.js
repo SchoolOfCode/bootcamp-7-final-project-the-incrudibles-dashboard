@@ -9,13 +9,15 @@ import JobSatisfaction from "../../components/JobSatisfaction";
 import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
 import SalaryGraph from "../../components/SalaryGraph";
 import SuccessTime from "../../components/SuccessTime";
+import TechStack from "../../components/TechStack";
 
 export default function Homepage() {
   const { data } = useDataContext();
   const ChartData = data.map((row) => {
     const graduationDate = row.graduation_date;
     const firstJobDate = row.first_job_date;
-    const { job_satisfaction, current_salary, tech_role } = getMostRecentResponse(row.responses);
+    const { job_satisfaction, current_salary, tech_role } =
+      getMostRecentResponse(row.responses);
     return {
       job_satisfaction,
       current_salary,
@@ -25,12 +27,19 @@ export default function Homepage() {
     };
   });
 
+  function createTechStackArray(dataContext) {
+    let array = [];
+    dataContext.forEach((response) =>
+      array.push(...response.current_tech_stack)
+    );
+    return array;
+  }
+
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+      <TechStack data={createTechStackArray(data)} />
       <Grid container spacing={3}>
-        <Grid item xs={12}>
-
-        </Grid>
+        <Grid item xs={12}></Grid>
         {/* selection */}
         <Grid item xs={4}>
           <Paper

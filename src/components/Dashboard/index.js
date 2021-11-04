@@ -16,9 +16,7 @@ import AdminPage from "../../pages/AdminPage";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import LogoutIcon from "@mui/icons-material/Logout";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { useDataContext } from "../../hooks/useDataContext";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import List from "@mui/material/List";
@@ -126,7 +124,7 @@ export default function Dashboard() {
                 color="#2E3033"
                 sx={{
                   flexGrow: 1,
-                  fontWeight: 600,
+                  fontWeight: "medium",
                 }}
               >
                 School of Code Alumni Reporting Dashboard
