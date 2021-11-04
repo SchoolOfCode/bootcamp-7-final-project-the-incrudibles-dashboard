@@ -28,13 +28,19 @@ export default function Homepage() {
     };
   });
 
-  // let array = ChartData.map((grad) => grad.current_tech_stack);
-  // array.forEach((stack) => stack.forEach((tech) => console.log(tech.name)));
-  // console.log(array);
+  let techArray = [];
+  ChartData.forEach((grad) => {
+    if (grad.current_tech_stack) {
+      grad.current_tech_stack.forEach((tech) => {
+        if (tech.name) {
+          techArray.push(tech.name);
+        }
+      });
+    }
+  });
 
   return (
     <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-      {/* <TechStack data={data} /> */}
       <Grid container spacing={3}>
         <Grid item xs={12}></Grid>
         {/* selection */}
@@ -92,11 +98,36 @@ export default function Homepage() {
           </Paper>
         </Grid>
         {/* all graduates */}
-        <Grid item xs={12}>
+        <Grid item xs={12} sx={{ pb: 5 }}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
             <GradTable data={data} />
           </Paper>
         </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Paper
+            sx={{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              height: "min-content",
+            }}
+          >
+            <TechStack data={techArray} />
+          </Paper>
+        </Grid>
+        {/* <Grid item xs={4}>
+          <Paper
+            sx={{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              height: "min-content",
+              pt: "2.3vw",
+            }}
+          ></Paper>
+        </Grid>*/}
       </Grid>
     </Container>
   );

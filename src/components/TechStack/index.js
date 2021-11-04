@@ -2,9 +2,25 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 
 const TechStack = ({ data }) => {
-  const top6 = [1, 2, 3, 4, 5, 6];
+  let labels = [];
+  let values = [];
 
-  const values = [1, 2, 3, 4, 5, 6];
+  function createGraphData(numberOfRows) {
+    const map = data.reduce(function (obj, b) {
+      obj[b] = ++obj[b] || 1;
+      return obj;
+    }, {});
+    for (let i = 0; i < numberOfRows; i++) {
+      let highest = Object.keys(map).reduce((a, b) =>
+        map[a] > map[b] ? a : b
+      );
+      labels.push(highest);
+      values.push((map[highest] / data.length) * 100);
+      delete map[highest];
+    }
+  }
+
+  createGraphData(8);
 
   return (
     <div>
@@ -16,9 +32,14 @@ const TechStack = ({ data }) => {
               borderWidth: 0,
             },
           },
+          scales: {
+            x: {
+              max: 10,
+            },
+          },
         }}
         data={{
-          labels: top6,
+          labels: labels,
           datasets: [
             {
               label: "Technology in use",
