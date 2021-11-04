@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Box } from "@mui/system";
 import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
-import Image1 from "../../images/1.png";
-import Image2 from "../../images/2.png";
-import Image3 from "../../images/3.png";
-import Image4 from "../../images/4.png";
-import Image5 from "../../images/5.png";
+import Image1 from "../../images/number1.jpg"
+import Image2 from "../../images/number2.jpg";
+import Image3 from "../../images/number3.jpg";
+import Image4 from "../../images/number4.jpg";
+import Image5 from "../../images/number5.jpg";
 import Image0 from "../../images/0.png";
 
 export default function GradJobSatisfaction({ gradData }) {
@@ -100,7 +100,7 @@ export default function GradJobSatisfaction({ gradData }) {
     >
       <Box sx={{ color: "text.secondary" }}>Current job satisfaction</Box>
       <Box sx={{ color: "text.secondary", display: "inline", fontSize: 12 }}>
-        <HappinessIndicator score={formattedSatisfaction} />
+        <div style={{ display: "flex", justifyContent: "center" }}><HappinessIndicator score={formattedSatisfaction} /></div>
       </Box>
     </Box>
   );
