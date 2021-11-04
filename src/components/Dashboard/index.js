@@ -105,14 +105,14 @@ export default function Dashboard() {
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
           <AppBar position="absolute" open={open}>
-            <Toolbar sx={{ backgroundColor: "white" }}>
+            <Toolbar sx={{ backgroundColor: "#141441" }}>
               <IconButton
                 edge="start"
                 color="inherit"
                 aria-label="open drawer"
                 onClick={toggleDrawer}
                 sx={{
-                  color: "#2E3033",
+                  color: "white",
                   ...(open && { display: "none" }),
                 }}
               >
@@ -121,7 +121,7 @@ export default function Dashboard() {
               <Typography
                 component="h1"
                 variant="h6"
-                color="#2E3033"
+                color="white"
                 sx={{
                   flexGrow: 1,
                   fontWeight: "medium",
@@ -130,13 +130,10 @@ export default function Dashboard() {
                 School of Code Alumni Reporting Dashboard
               </Typography>
               <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <Link
-                  to="/"
-                  style={{ textDecoration: "none", color: "#2E3033" }}
-                >
+                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
                   <ListItem button edge="end">
                     <ListItemIcon>
-                      <PeopleAltIcon sx={{ color: "#2E3033" }} />
+                      <PeopleAltIcon sx={{ color: "white" }} />
                     </ListItemIcon>
                     <ListItemText primary="Graduates" />
                   </ListItem>
@@ -144,18 +141,18 @@ export default function Dashboard() {
 
                 <Link
                   to="/administration"
-                  style={{ textDecoration: "none", color: "#2E3033" }}
+                  style={{ textDecoration: "none", color: "white" }}
                 >
                   <ListItem button>
                     <ListItemIcon>
-                      <BusinessIcon sx={{ color: "#2E3033" }} />
+                      <BusinessIcon sx={{ color: "white" }} />
                     </ListItemIcon>
                     <ListItemText primary="Partners" />
                   </ListItem>
                 </Link>
                 <div
                   style={{
-                    backgroundColor: "#2E3033",
+                    backgroundColor: "white",
                     height: "45px",
                     width: "5px",
                     marginRight: "3px",
@@ -164,9 +161,9 @@ export default function Dashboard() {
                 ></div>
                 <ListItem button onClick={() => handleLogout()}>
                   <ListItemIcon>
-                    <LogoutIcon sx={{ color: "#2E3033" }} />
+                    <LogoutIcon sx={{ color: "white" }} />
                   </ListItemIcon>
-                  <ListItemText primary="Logout" sx={{ color: "#2E3033" }} />
+                  <ListItemText primary="Logout" sx={{ color: "white" }} />
                 </ListItem>
               </div>
             </Toolbar>

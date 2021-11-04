@@ -9,7 +9,7 @@ import JobSatisfaction from "../../components/JobSatisfaction";
 import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
 import SalaryGraph from "../../components/SalaryGraph";
 import SuccessTime from "../../components/SuccessTime";
-import TechStack from "../../components/TechStack";
+// import TechStack from "../../components/TechStack";
 
 export default function Homepage() {
   const { data } = useDataContext();
@@ -27,17 +27,17 @@ export default function Homepage() {
     };
   });
 
-  function createTechStackArray(dataContext) {
-    let array = [];
-    dataContext.forEach((response) =>
-      array.push(...response.current_tech_stack)
-    );
-    return array;
-  }
+  // function createTechStackArray(dataContext) {
+  //   let array = [];
+  //   dataContext.forEach((response) =>
+  //     array.push(...response.current_tech_stack)
+  //   );
+  //   return array;
+  // }
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <TechStack data={createTechStackArray(data)} />
+      {/* <TechStack data={createTechStackArray(data)} /> */}
       <Grid container spacing={3}>
         <Grid item xs={12}></Grid>
         {/* selection */}
