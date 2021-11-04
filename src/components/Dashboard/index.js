@@ -64,6 +64,7 @@ const Drawer = styled(MuiDrawer, {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    background: "#2E2C2C",
     boxSizing: "border-box",
     ...(!open && {
       overflowX: "hidden",
@@ -165,16 +166,20 @@ export default function Dashboard() {
           <Drawer variant="permanent" open={open}>
             <Toolbar sx={{ display: "flex", alignItems: "center", justifyContent: "flex-end", px: [1], }} >
               <IconButton onClick={toggleDrawer}>
-                <ChevronLeftIcon />
+                <ChevronLeftIcon sx={{ color: "white" }} />
               </IconButton>
             </Toolbar>
 
-            <List sx={{ paddingLeft: "3px", width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component="nav" aria-labelledby="nested-list-subheader" >
+            <List sx={{ paddingLeft: "3px", width: '100%', maxWidth: 360, bgcolor: "#2E2C2C" }} component="nav" aria-labelledby="nested-list-subheader" >
               <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
-                  <FilterListIcon />
+                  <FilterListIcon sx={{ color: "white" }} />
                 </ListItemIcon>
-                <ListItemText primary="Cohorts" />
+                <ListItemText sx={{ color: "white" }} primaryTypographyProps={{
+
+                  fontWeight: 'bold',
+
+                }} primary="Cohorts" />
                 {openList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={openList} timeout="auto" unmountOnExit>
@@ -190,9 +195,9 @@ export default function Dashboard() {
                 <List component="div" disablePadding>
                   <ListItemButton onClick={() => resetFilter()} sx={{ pl: 4 }}>
                     <ListItemIcon>
-                      <GroupsIcon />
+                      <GroupsIcon sx={{ color: "white" }} />
                     </ListItemIcon>
-                    <ListItemText primary="All Cohorts" />
+                    <ListItemText sx={{ color: "white" }} primary="All Cohorts" />
                   </ListItemButton>
                 </List>
               </Collapse>
@@ -201,7 +206,7 @@ export default function Dashboard() {
 
               <ListItemButton >
                 <ListItemIcon>
-                  <DownloadIcon />
+                  <DownloadIcon sx={{ color: "white" }} />
                 </ListItemIcon>
                 <CSVLink data={convertJsonToCsv(data)} filename={"graduate_responses.csv"}>Export</CSVLink>
               </ListItemButton>

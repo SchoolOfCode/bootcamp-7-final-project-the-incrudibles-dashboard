@@ -12,9 +12,9 @@ const CohortFilter = ({ cohortNum }) => {
             <ListItemButton onClick={() => filterDataByCohort(cohortNum)
             } sx={{ pl: 4 }}>
                 <ListItemIcon>
-                    <GroupsIcon />
+                    <GroupsIcon sx={{ color: "white" }} />
                 </ListItemIcon>
-                <ListItemText primary={`Cohort ${cohortNum}`} />
+                <ListItemText sx={{ color: "white" }} primary={`Cohort ${cohortNum}`} />
             </ListItemButton>
         </List>
     );
