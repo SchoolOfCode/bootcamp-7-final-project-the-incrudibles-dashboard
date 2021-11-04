@@ -36,7 +36,7 @@ export default function Homepage() {
   // }
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
       {/* <TechStack data={createTechStackArray(data)} /> */}
       <Grid container spacing={3}>
         <Grid item xs={12}></Grid>
@@ -47,7 +47,7 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 380,
+              height: "min-content",
             }}
           >
             <JobSatisfaction satisfactionIndex={ChartData} />
@@ -62,7 +62,8 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 380,
+              height: "min-content",
+              pt: "2.3vw"
             }}
           >
             <SuccessTime times={ChartData} />
@@ -75,7 +76,7 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 380,
+              height: "min-content",
             }}
           >
             <SalaryGraph salaryInfo={ChartData} />
@@ -87,7 +88,7 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 380,
+              height: "fit-content",
             }}
           >
             <Piechart employmentStatus={ChartData} />
