@@ -23,7 +23,14 @@ const TechStack = ({ data }) => {
             {
               label: "Technology in use",
               data: values,
-              backgroundColor: ["#55ba46"],
+              backgroundColor: [
+                "#003f5c",
+                "#58508d",
+                "#bc5090",
+                "#ff6361",
+                "#ffa600",
+                "#40cc4c",
+              ],
             },
           ],
         }}
