@@ -33,6 +33,10 @@ import NameSearch from "../NameSearch";
 import BusinessIcon from "@mui/icons-material/Business";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import { Button } from "@mui/material";
+import WorkIcon from "@mui/icons-material/Work";
+import PersonSearchIcon from "@mui/icons-material/PersonSearch";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import LengthOfWork from "../LengthOfWork";
 
 const drawerWidth = 320;
 
@@ -84,19 +88,53 @@ const mdTheme = createTheme();
 
 export default function Dashboard() {
   const { handleLogout } = useLoginContext();
-  const { data, resetFilter } = useDataContext();
+  const { data, resetFilter, filterDataByName, filterDataByEmployer } =
+    useDataContext();
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = () => {
     setOpen(!open);
     setOpenList(false);
+    setOpenGradSearch(false);
+    setOpenEmployerSearch(false);
+    setLengthOfWork(false);
   };
 
   const [openList, setOpenList] = useState(false);
+  const [openGradSearch, setOpenGradSearch] = useState(false);
+  const [openEmployerSearch, setOpenEmployerSearch] = useState(false);
+  const [lengthOfWork, setLengthOfWork] = useState(false);
 
   const handleClick = () => {
     if (open) {
       setOpenList(!openList);
+      setOpenGradSearch(false);
+      setOpenEmployerSearch(false);
+      setLengthOfWork(false);
+    }
+  };
+  const handleSearchByGrad = () => {
+    if (open) {
+      setOpenGradSearch(!openGradSearch);
+      setOpenList(false);
+      setOpenEmployerSearch(false);
+      setLengthOfWork(false);
+    }
+  };
+  const handleSearchByEmployer = () => {
+    if (open) {
+      setOpenEmployerSearch(!openEmployerSearch);
+      setOpenList(false);
+      setOpenGradSearch(false);
+      setLengthOfWork(false);
+    }
+  };
+  const handleSearchByLengthOfWork = () => {
+    if (open) {
+      setLengthOfWork(!lengthOfWork);
+      setOpenList(false);
+      setOpenGradSearch(false);
+      setOpenEmployerSearch(false);
     }
   };
 
@@ -193,11 +231,21 @@ export default function Dashboard() {
               component="nav"
               aria-labelledby="nested-list-subheader"
             >
-              <ListItemButton onClick={handleClick}>
+              <ListItemButton
+                onClick={handleClick}
+                sx={{
+                  mb: "10px",
+                }}
+              >
                 <ListItemIcon>
                   <FilterListIcon />
                 </ListItemIcon>
-                <ListItemText primary="Cohorts" />
+                <ListItemText
+                  primaryTypographyProps={{
+                    fontWeight: "bold",
+                  }}
+                  primary="Cohorts"
+                />
                 {openList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={openList} timeout="auto" unmountOnExit>
@@ -209,7 +257,7 @@ export default function Dashboard() {
                 <CohortFilter cohortNum={6} key={6} />
                 <CohortFilter cohortNum={7} key={7} />
 
-                <List component="div" disablePadding>
+                <List component="div">
                   <ListItemButton onClick={() => resetFilter()} sx={{ pl: 4 }}>
                     <ListItemIcon>
                       <GroupsIcon />
@@ -218,10 +266,76 @@ export default function Dashboard() {
                   </ListItemButton>
                 </List>
               </Collapse>
+              <ListItemButton
+                onClick={handleSearchByGrad}
+                sx={{
+                  mb: "10px",
+                }}
+              >
+                <ListItemIcon>
+                  <PersonSearchIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primaryTypographyProps={{
+                    fontWeight: "bold",
+                  }}
+                  primary="Graduate Search"
+                />
 
-              <NameSearch />
+                {openGradSearch ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openGradSearch} timeout="auto" unmountOnExit>
+                <NameSearch
+                  graduateSearch={filterDataByName}
+                  text=" Search by name"
+                />
+              </Collapse>
+              <ListItemButton
+                onClick={handleSearchByEmployer}
+                sx={{
+                  mb: "10px",
+                }}
+              >
+                <ListItemIcon>
+                  <WorkIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primaryTypographyProps={{
+                    fontWeight: "bold",
+                  }}
+                  primary="Employer Search"
+                />
+                {openEmployerSearch ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openEmployerSearch} timeout="auto" unmountOnExit>
+                <NameSearch
+                  graduateSearch={filterDataByEmployer}
+                  text=" Search by employer"
+                />
+              </Collapse>
+              <ListItemButton
+                onClick={handleSearchByLengthOfWork}
+                sx={{
+                  mb: "10px",
+                }}
+              >
+                <ListItemIcon>
+                  <AccessTimeIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primaryTypographyProps={{
+                    fontWeight: "bold",
+                  }}
+                  primary="Length Of Service
+                "
+                />
+                {lengthOfWork ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={lengthOfWork} timeout="auto" unmountOnExit>
+                <LengthOfWork />
+              </Collapse>
 
-              <ListItemButton>
+              <ListItemButton sx={{ pt: "20px", mt: 3 }}>
                 <ListItemIcon>
                   <DownloadIcon />
                 </ListItemIcon>

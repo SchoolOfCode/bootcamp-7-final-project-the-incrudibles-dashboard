@@ -1,5 +1,6 @@
 import React, { useState, useContext, createContext } from "react";
 import { useResponsesData } from "./useSWR";
+import { getMostRecentResponse } from "../helperFunctions/getrecentresponse";
 
 const DataContext = createContext();
 
@@ -28,6 +29,19 @@ export function DataProvider({ children }) {
     return;
   }
 
+  function filterDataByEmployer(name) {
+    setData(
+      response.payload.filter(
+        (employer) =>
+          getMostRecentResponse(employer.responses).current_employer &&
+          getMostRecentResponse(employer.responses)
+            .current_employer.toLowerCase()
+            .includes(name)
+      )
+    );
+    return;
+  }
+
   return (
     <DataContext.Provider
       value={{
@@ -35,6 +49,7 @@ export function DataProvider({ children }) {
         filterDataByCohort,
         resetFilter,
         filterDataByName,
+        filterDataByEmployer,
       }}
     >
       {children}
