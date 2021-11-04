@@ -32,6 +32,7 @@ import CohortFilter from "../CohortFilter";
 import NameSearch from "../NameSearch";
 import BusinessIcon from "@mui/icons-material/Business";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import { Button } from "@mui/material";
 
 const drawerWidth = 320;
 
@@ -227,8 +228,15 @@ export default function Dashboard() {
                 <CSVLink
                   data={convertJsonToCsv(data)}
                   filename={"graduate_responses.csv"}
+                  style={{ textDecorationLine: "none" }}
                 >
-                  Export
+                  <Button
+                    variant="contained"
+                    color="success"
+                    sx={{ textDecorationLine: "none" }}
+                  >
+                    Export CSV{" "}
+                  </Button>
                 </CSVLink>
               </ListItemButton>
             </List>

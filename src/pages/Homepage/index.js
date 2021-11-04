@@ -9,14 +9,14 @@ import JobSatisfaction from "../../components/JobSatisfaction";
 import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
 import SalaryGraph from "../../components/SalaryGraph";
 import SuccessTime from "../../components/SuccessTime";
-// import TechStack from "../../components/TechStack";
+import TechStack from "../../components/TechStack";
 
 export default function Homepage() {
   const { data } = useDataContext();
   const ChartData = data.map((row) => {
     const graduationDate = row.graduation_date;
     const firstJobDate = row.first_job_date;
-    const { job_satisfaction, current_salary, tech_role } =
+    const { job_satisfaction, current_salary, tech_role, current_tech_stack } =
       getMostRecentResponse(row.responses);
     return {
       job_satisfaction,
@@ -24,20 +24,17 @@ export default function Homepage() {
       tech_role,
       graduationDate,
       firstJobDate,
+      current_tech_stack,
     };
   });
 
-  // function createTechStackArray(dataContext) {
-  //   let array = [];
-  //   dataContext.forEach((response) =>
-  //     array.push(...response.current_tech_stack)
-  //   );
-  //   return array;
-  // }
+  // let array = ChartData.map((grad) => grad.current_tech_stack);
+  // array.forEach((stack) => stack.forEach((tech) => console.log(tech.name)));
+  // console.log(array);
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      {/* <TechStack data={createTechStackArray(data)} /> */}
+    <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+      {/* <TechStack data={data} /> */}
       <Grid container spacing={3}>
         <Grid item xs={12}></Grid>
         {/* selection */}
@@ -47,7 +44,7 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 380,
+              height: "min-content",
             }}
           >
             <JobSatisfaction satisfactionIndex={ChartData} />
@@ -62,7 +59,8 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 380,
+              height: "min-content",
+              pt: "2.3vw",
             }}
           >
             <SuccessTime times={ChartData} />
@@ -75,7 +73,7 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 380,
+              height: "min-content",
             }}
           >
             <SalaryGraph salaryInfo={ChartData} />
@@ -87,7 +85,7 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: 380,
+              height: "fit-content",
             }}
           >
             <Piechart employmentStatus={ChartData} />
