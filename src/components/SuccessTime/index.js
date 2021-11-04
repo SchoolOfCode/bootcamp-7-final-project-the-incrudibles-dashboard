@@ -10,7 +10,7 @@ const SuccessTime = ({ times }) => {
   const duration = times.map((time) => {
     const timeDiff = Math.abs(
       new Date(time.graduationDate.slice(0, 10)) -
-      new Date(time.firstJobDate.slice(0, 10))
+        new Date(time.firstJobDate.slice(0, 10))
     );
     return Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
   });
@@ -44,28 +44,26 @@ const SuccessTime = ({ times }) => {
           ],
           datasets: [
             {
+              // fill: {
+              //   target: "origin",
+              // },
               label: "Time taken to secure first job",
+              tension: 0.3,
               data: [oneMonth, twoMonths, threeMonths, fourMonths],
               // data: [10, 23, 2, 1],
-              backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(153, 102, 255, 0.2)",
-                "rgba(255, 159, 64, 0.2)",
-              ],
-              borderColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-                "rgba(153, 102, 255, 1)",
-                "rgba(255, 159, 64, 1)",
-              ],
+              backgroundColor: ["#003f5c"],
+              borderColor: ["#003f5c"],
               borderWidth: 1,
             },
           ],
+        }}
+        options={{
+          plugins: {
+            title: {
+              display: true,
+              text: "Time taken to secure first job",
+            },
+          },
         }}
         height={350}
         width={800}

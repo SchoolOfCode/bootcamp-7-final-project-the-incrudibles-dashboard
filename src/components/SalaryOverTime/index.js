@@ -19,8 +19,8 @@ const SalaryOverTime = ({ gradData }) => {
             {
               label: "Salary progression",
               data: salaries,
-              backgroundColor: ["#55ba46"],
-              borderColor: ["#55ba46"],
+              backgroundColor: ["#003f5c"],
+              borderColor: ["#003f5c"],
               borderWidth: 2,
               tension: 0.3,
               spanGaps: true,

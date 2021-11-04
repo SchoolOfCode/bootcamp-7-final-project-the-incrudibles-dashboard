@@ -21,12 +21,7 @@ const Piechart = ({ employmentStatus }) => {
             {
               label: "Employment Status",
               data: [employed, unEmployed],
-              backgroundColor: [
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(255, 99, 132, 0.2)",
-              ],
-              borderColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
-              borderWidth: 1,
+              backgroundColor: ["#58508d", "#ff6361"],
             },
           ],
         }}
@@ -38,3 +33,10 @@ const Piechart = ({ employmentStatus }) => {
 };
 
 export default Piechart;
+
+// "#003f5c",
+// "#58508d",
+// "#bc5090",
+// "#ff6361",
+// "#ffa600",
+// "#40cc4c",

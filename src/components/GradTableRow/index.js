@@ -53,6 +53,13 @@ export default function GradTable({ gradData }) {
     );
   }
 
+  // "#003f5c",
+  // "#58508d",
+  // "#bc5090",
+  // "#ff6361",
+  // "#ffa600",
+  // "#40cc4c",
+
   function HappinessIndicator({ score }) {
     switch (score) {
       case 0:
@@ -60,7 +67,7 @@ export default function GradTable({ gradData }) {
       case 1:
         return (
           <Indicator
-            colour={"#ff4545"}
+            colour={"#ff6361"}
             image={image1}
             alt={"Very low job satisfaction"}
           />
@@ -68,7 +75,7 @@ export default function GradTable({ gradData }) {
       case 2:
         return (
           <Indicator
-            colour={"#ffa534"}
+            colour={"#ffa600"}
             image={image2}
             alt={"Low job satisfaction"}
           />
@@ -84,7 +91,7 @@ export default function GradTable({ gradData }) {
       case 4:
         return (
           <Indicator
-            colour={"#b7dd29"}
+            colour={"#40cc4c"}
             image={image4}
             alt={"good satisfaction"}
           />
@@ -92,7 +99,7 @@ export default function GradTable({ gradData }) {
       case 5:
         return (
           <Indicator
-            colour={"#57e32c"}
+            colour={"#2c8e35"}
             image={image5}
             alt={"Very good satisfaction"}
           />
