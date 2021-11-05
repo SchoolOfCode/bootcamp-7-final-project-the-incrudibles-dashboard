@@ -99,14 +99,6 @@ export default function Homepage() {
             <Piechart employmentStatus={ChartData} />
           </Paper>
         </Grid>
-        {/* all graduates */}
-        <Grid item xs={12} sx={{ pb: 5 }}>
-          <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-            <GradTable data={data} />
-          </Paper>
-        </Grid>
-      </Grid>
-      <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper
             sx={{
@@ -119,18 +111,14 @@ export default function Homepage() {
             <TechStack data={techArray} rows={8} />
           </Paper>
         </Grid>
-        {/* <Grid item xs={4}>
-          <Paper
-            sx={{
-              p: 2,
-              display: "flex",
-              flexDirection: "column",
-              height: "min-content",
-              pt: "2.3vw",
-            }}
-          ></Paper>
-        </Grid>*/}
+        {/* all graduates */}
+        <Grid item xs={12} sx={{ pb: 5 }}>
+          <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+            <GradTable data={data} />
+          </Paper>
+        </Grid>
       </Grid>
+      <Grid container spacing={3}></Grid>
     </Container>
   );
 }

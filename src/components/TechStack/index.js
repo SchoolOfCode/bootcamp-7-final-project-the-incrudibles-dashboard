@@ -12,9 +12,12 @@ const TechStack = ({ data, rows }) => {
         return obj;
       }, {});
       for (let i = 0; i < numberOfRows; i++) {
+        console.log(i);
+
         let highest = Object.keys(map).reduce((a, b) =>
           map[a] > map[b] ? a : b
         );
+        console.log(highest);
         labels.push(highest);
         values.push((map[highest] / data.length) * 100);
         delete map[highest];
@@ -60,7 +63,7 @@ const TechStack = ({ data, rows }) => {
             },
           ],
         }}
-        height={250}
+        height={150}
         width={400}
       />
     </div>

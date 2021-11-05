@@ -84,7 +84,7 @@ export default function GradView({ gradData, openResponse, setOpenResponse }) {
                 mb: 2,
               }}
             >
-              <TechStack data={techArray} numberOfRows={6} />
+              <TechStack data={techArray} rows={3} />
             </Paper>
           </Grid>
           <Grid xs={12}>
