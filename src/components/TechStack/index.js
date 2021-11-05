@@ -25,10 +25,10 @@ const TechStack = ({ data }) => {
     }
   }
 
-  createGraphData(10);
+  createGraphData(5);
 
   return (
-    <div>
+    <div style={{ height: "fit-content" }}>
       <Bar
         options={{
           indexAxis: "y",
@@ -60,8 +60,8 @@ const TechStack = ({ data }) => {
             },
           ],
         }}
-        height={500}
-        width={800}
+        height={100}
+        width={400}
       />
     </div>
   );

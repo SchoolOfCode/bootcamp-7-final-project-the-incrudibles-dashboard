@@ -41,7 +41,18 @@ export function DataProvider({ children }) {
     );
     return;
   }
-
+  function filterDataByLengthOfService(value) {
+    setData(
+      response.payload.filter(
+        (graduate) =>
+          getMostRecentResponse(graduate.responses).length_of_service &&
+          getMostRecentResponse(graduate.responses).length_of_service.includes(
+            value
+          )
+      )
+    );
+    return;
+  }
   return (
     <DataContext.Provider
       value={{
@@ -50,6 +61,7 @@ export function DataProvider({ children }) {
         resetFilter,
         filterDataByName,
         filterDataByEmployer,
+        filterDataByLengthOfService,
       }}
     >
       {children}

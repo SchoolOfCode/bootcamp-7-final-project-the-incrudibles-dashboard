@@ -92,28 +92,35 @@ const mdTheme = createTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
   },
-  palette: {
-
-  }
 });
 
-
+const appbarcolor = "#212830";
 const sidebarTheme = createTheme({
   palette: {
     mode: "dark",
+    primary: { main: "#F58A07" },
     success: {
-      main: "#40cc4c"
+      main: "#F58A07",
     },
     text: {
-      primary: "#f0ebd8"
-    }
-  }
-})
+      primary: "#FFFFFF",
+    },
+    background: {
+      paper: appbarcolor,
+      // default: appbarcolor,
+    },
+  },
+});
 
 export default function Dashboard() {
   const { handleLogout } = useLoginContext();
-  const { data, resetFilter, filterDataByName, filterDataByEmployer } =
-    useDataContext();
+  const {
+    data,
+    resetFilter,
+    filterDataByName,
+    filterDataByEmployer,
+    filterDataByLengthOfService,
+  } = useDataContext();
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -168,7 +175,7 @@ export default function Dashboard() {
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
           <AppBar position="absolute" open={open}>
-            <Toolbar sx={{ backgroundColor: "#3E5C76" }}>
+            <Toolbar sx={{ backgroundColor: appbarcolor }}>
               <IconButton
                 edge="start"
                 color="inherit"
@@ -283,7 +290,10 @@ export default function Dashboard() {
                   <CohortFilter cohortNum={7} key={7} />
 
                   <List component="div">
-                    <ListItemButton onClick={() => resetFilter()} sx={{ pl: 4 }}>
+                    <ListItemButton
+                      onClick={() => resetFilter()}
+                      sx={{ pl: 4 }}
+                    >
                       <ListItemIcon>
                         <GroupsIcon />
                       </ListItemIcon>
@@ -357,7 +367,9 @@ export default function Dashboard() {
                   {lengthOfWork ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
                 <Collapse in={lengthOfWork} timeout="auto" unmountOnExit>
-                  <LengthOfWork />
+                  <LengthOfWork
+                    filterByDuration={filterDataByLengthOfService}
+                  />
                 </Collapse>
 
                 <ListItemButton sx={{ pt: "20px", mt: 3 }}>
