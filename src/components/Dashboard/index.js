@@ -92,6 +92,9 @@ const mdTheme = createTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
   },
+  palette: {
+
+  }
 });
 
 
@@ -100,6 +103,9 @@ const sidebarTheme = createTheme({
     mode: "dark",
     success: {
       main: "#40cc4c"
+    },
+    text: {
+      primary: "#f0ebd8"
     }
   }
 })
@@ -162,7 +168,7 @@ export default function Dashboard() {
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
           <AppBar position="absolute" open={open}>
-            <Toolbar sx={{ backgroundColor: "#141441" }}>
+            <Toolbar sx={{ backgroundColor: "#3E5C76" }}>
               <IconButton
                 edge="start"
                 color="inherit"
@@ -380,7 +386,7 @@ export default function Dashboard() {
             sx={{
               backgroundColor: (theme) =>
                 theme.palette.mode === "light"
-                  ? theme.palette.grey[100]
+                  ? theme.palette.grey[300]
                   : theme.palette.grey[900],
               flexGrow: 1,
               height: "100vh",
