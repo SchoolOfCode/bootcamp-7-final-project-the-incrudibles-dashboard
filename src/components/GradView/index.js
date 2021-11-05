@@ -36,35 +36,61 @@ export default function GradView({ gradData }) {
             </Typography>
           </Paper>
         </Grid>
-        {/* selection */}
-        <Grid item xs={12} md={3} lg={3}>
-          <Paper
-            sx={{
-              p: 2,
-              display: "flex",
-              flexDirection: "column",
-              height: "content",
-            }}
-          >
-            <Table size="small" aria-label="purchases">
-              <TableHead>
-                <TableCell align="center"></TableCell>
-                <TableCell align="left">
-                  <Typography gutterBottom component="div">
-                    Survey responses
-                  </Typography>
-                </TableCell>
-              </TableHead>
-              <TableBody>
-                {gradData.responses.map((response) => (
-                  <ResponseRow responseData={response} />
-                ))}
-              </TableBody>
-            </Table>
-          </Paper>
+        <Grid xs={12} md={7}>
+          <Grid xs={12}>
+            <Grid xs={12} md={6}>
+              <SalaryCompare gradData={gradData} />
+            </Grid>
+            <Grid xs={12} md={6}>
+              <GradJobSatisfaction gradData={gradData} />
+            </Grid>
+          </Grid>
+          <Grid xs={12}>
+            <Paper
+              sx={{
+                p: 2,
+                display: "flex",
+                flexDirection: "column",
+                height: 360,
+              }}
+            >
+              <SalaryOverTime gradData={gradData} />
+            </Paper>
+          </Grid>
         </Grid>
+        <Grid xs={12} md={5}>
+          <Grid xs={12}>
+            <Paper
+              sx={{
+                p: 2,
+                display: "flex",
+                flexDirection: "column",
+                height: "content",
+              }}
+            >
+              <Table size="small" aria-label="purchases">
+                <TableHead>
+                  <TableCell align="center"></TableCell>
+                  <TableCell align="left">
+                    <Typography gutterBottom component="div">
+                      Survey responses
+                    </Typography>
+                  </TableCell>
+                </TableHead>
+                <TableBody>
+                  {gradData.responses.map((response) => (
+                    <ResponseRow responseData={response} />
+                  ))}
+                </TableBody>
+              </Table>
+            </Paper>
+          </Grid>
+          <Grid xs={12}></Grid>
+        </Grid>
+        {/* selection */}
+        {/* <Grid item xs={12} md={3} lg={3}></Grid>
         {/* job satisfaction */}
-        <Grid item xs={12} md={3} lg={3}>
+        {/* <Grid item xs={12} md={3} lg={3}>
           <div
             sx={{
               p: 2,
@@ -72,24 +98,10 @@ export default function GradView({ gradData }) {
               flexDirection: "column",
               height: 240,
             }}
-          >
-            <SalaryCompare gradData={gradData} />
-            <GradJobSatisfaction gradData={gradData} />
-          </div>
+          ></div>
         </Grid>
         {/* salary over time */}
-        <Grid item xs={12} md={6} lg={6}>
-          <Paper
-            sx={{
-              p: 2,
-              display: "flex",
-              flexDirection: "column",
-              height: 360,
-            }}
-          >
-            <SalaryOverTime gradData={gradData} />
-          </Paper>
-        </Grid>
+        {/* <Grid item xs={12} md={6} lg={6}></Grid> */}
       </Grid>
     </Box>
   );
