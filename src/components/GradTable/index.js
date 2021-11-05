@@ -90,6 +90,7 @@ TablePaginationActions.propTypes = {
 export default function GradTable({ data }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [openRow, setOpenRow] = useState(null);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -161,7 +162,13 @@ export default function GradTable({ data }) {
             ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : data
           ).map((row) => (
-            <GradTableRow key={row.id} gradData={row} />
+            <GradTableRow
+              key={row.id}
+              gradData={row}
+              id={row.id}
+              setOpenRow={setOpenRow}
+              openRow={openRow}
+            />
           ))}
         </TableBody>
         <TableFooter>

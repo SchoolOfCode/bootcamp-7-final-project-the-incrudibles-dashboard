@@ -1,7 +1,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
-const TechStack = ({ data }) => {
+const TechStack = ({ data, rows }) => {
   let labels = [];
   let values = [];
 
@@ -12,9 +12,12 @@ const TechStack = ({ data }) => {
         return obj;
       }, {});
       for (let i = 0; i < numberOfRows; i++) {
+        console.log(i);
+
         let highest = Object.keys(map).reduce((a, b) =>
           map[a] > map[b] ? a : b
         );
+        console.log(highest);
         labels.push(highest);
         values.push((map[highest] / data.length) * 100);
         delete map[highest];
@@ -25,7 +28,7 @@ const TechStack = ({ data }) => {
     }
   }
 
-  createGraphData(10);
+  createGraphData(rows);
 
   return (
     <div>
@@ -60,8 +63,8 @@ const TechStack = ({ data }) => {
             },
           ],
         }}
-        height={500}
-        width={800}
+        height={150}
+        width={400}
       />
     </div>
   );

@@ -4,7 +4,6 @@ import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import IconButton from "@mui/material/IconButton";
-import { useState } from "react";
 import { Collapse, Typography } from "@mui/material";
 import GradView from "../GradView";
 import image1 from "../../images/1.png";
@@ -12,10 +11,20 @@ import image2 from "../../images/2.png";
 import image3 from "../../images/3.png";
 import image4 from "../../images/4.png";
 import image5 from "../../images/5.png";
+import { useState } from "react";
+// import { Element, animateScroll } from "react-scroll";
 
-export default function GradTable({ gradData }) {
-  const [open, setOpen] = useState(false);
+export default function GradTable({ gradData, id, openRow, setOpenRow }) {
   const latestResponse = getMostRecentResponse(gradData.responses);
+  const [openResponse, setOpenResponse] = useState(null);
+
+  // animateScroll.scrollTo(`${id}`, {
+  //   duration: 1500,
+  //   delay: 100,
+  //   smooth: true,
+  //   containerId: `${id}`,
+  //   offset: 50,
+  // });
 
   const formattedSatisfaction = latestResponse.job_satisfaction
     ? latestResponse.job_satisfaction
@@ -112,12 +121,19 @@ export default function GradTable({ gradData }) {
     <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell>
+          {/* <Element name={id} /> */}
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
+            onClick={() => {
+              openRow === id ? setOpenRow(null) : setOpenRow(id);
+            }}
           >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {openRow === id ? (
+              <KeyboardArrowUpIcon />
+            ) : (
+              <KeyboardArrowDownIcon />
+            )}
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
@@ -157,8 +173,12 @@ export default function GradTable({ gradData }) {
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <GradView gradData={gradData} />
+          <Collapse in={openRow === id} timeout="auto" unmountOnExit>
+            <GradView
+              gradData={gradData}
+              openResponse={openResponse}
+              setOpenResponse={setOpenResponse}
+            />
           </Collapse>
         </TableCell>
       </TableRow>
