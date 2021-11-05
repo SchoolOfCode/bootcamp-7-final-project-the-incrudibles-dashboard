@@ -6,21 +6,26 @@ const TechStack = ({ data }) => {
   let values = [];
 
   function createGraphData(numberOfRows) {
-    const map = data.reduce(function (obj, b) {
-      obj[b] = ++obj[b] || 1;
-      return obj;
-    }, {});
-    for (let i = 0; i < numberOfRows; i++) {
-      let highest = Object.keys(map).reduce((a, b) =>
-        map[a] > map[b] ? a : b
-      );
-      labels.push(highest);
-      values.push((map[highest] / data.length) * 100);
-      delete map[highest];
+    if (data.length > 0) {
+      const map = data.reduce(function (obj, b) {
+        obj[b] = ++obj[b] || 1;
+        return obj;
+      }, {});
+      for (let i = 0; i < numberOfRows; i++) {
+        let highest = Object.keys(map).reduce((a, b) =>
+          map[a] > map[b] ? a : b
+        );
+        labels.push(highest);
+        values.push((map[highest] / data.length) * 100);
+        delete map[highest];
+      }
+    } else {
+      labels.push("No data");
+      values.push(0);
     }
   }
 
-  createGraphData(8);
+  createGraphData(10);
 
   return (
     <div>
