@@ -84,7 +84,25 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const mdTheme = createTheme();
+const mdTheme = createTheme({
+  typography: {
+    fontFamily: `"Raleway", "Roboto", "Helvetica", "Arial", sans-serif`,
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+  },
+});
+
+
+const sidebarTheme = createTheme({
+  palette: {
+    mode: "dark",
+    success: {
+      main: "#40cc4c"
+    }
+  }
+})
 
 export default function Dashboard() {
   const { handleLogout } = useLoginContext();
@@ -207,154 +225,156 @@ export default function Dashboard() {
               </div>
             </Toolbar>
           </AppBar>
-          <Drawer variant="permanent" open={open}>
-            <Toolbar
-              sx={{
-                display: "flex",
-                alignItems: "left",
-                justifyContent: "flex-end",
-                px: [1],
-              }}
-            >
-              <IconButton onClick={toggleDrawer}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </Toolbar>
-
-            <List
-              sx={{
-                paddingLeft: "3px",
-                width: "100%",
-                maxWidth: 360,
-                bgcolor: "background.paper",
-              }}
-              component="nav"
-              aria-labelledby="nested-list-subheader"
-            >
-              <ListItemButton
-                onClick={handleClick}
+          <ThemeProvider theme={sidebarTheme}>
+            <Drawer variant="permanent" open={open}>
+              <Toolbar
                 sx={{
-                  mb: "10px",
+                  display: "flex",
+                  alignItems: "left",
+                  justifyContent: "flex-end",
+                  px: [1],
                 }}
               >
-                <ListItemIcon>
-                  <FilterListIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primaryTypographyProps={{
-                    fontWeight: "bold",
-                  }}
-                  primary="Cohorts"
-                />
-                {openList ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-              <Collapse in={openList} timeout="auto" unmountOnExit>
-                <CohortFilter cohortNum={1} key={1} />
-                <CohortFilter cohortNum={2} key={2} />
-                <CohortFilter cohortNum={3} key={3} />
-                <CohortFilter cohortNum={4} key={4} />
-                <CohortFilter cohortNum={5} key={5} />
-                <CohortFilter cohortNum={6} key={6} />
-                <CohortFilter cohortNum={7} key={7} />
+                <IconButton onClick={toggleDrawer}>
+                  <ChevronLeftIcon />
+                </IconButton>
+              </Toolbar>
 
-                <List component="div">
-                  <ListItemButton onClick={() => resetFilter()} sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <GroupsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="All Cohorts" />
-                  </ListItemButton>
-                </List>
-              </Collapse>
-              <ListItemButton
-                onClick={handleSearchByGrad}
+              <List
                 sx={{
-                  mb: "10px",
+                  paddingLeft: "3px",
+                  width: "100%",
+                  maxWidth: 360,
+                  bgcolor: "background.paper",
                 }}
+                component="nav"
+                aria-labelledby="nested-list-subheader"
               >
-                <ListItemIcon>
-                  <PersonSearchIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primaryTypographyProps={{
-                    fontWeight: "bold",
+                <ListItemButton
+                  onClick={handleClick}
+                  sx={{
+                    mb: "10px",
                   }}
-                  primary="Graduate Search"
-                />
-
-                {openGradSearch ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-              <Collapse in={openGradSearch} timeout="auto" unmountOnExit>
-                <NameSearch
-                  graduateSearch={filterDataByName}
-                  text=" Search by name"
-                />
-              </Collapse>
-              <ListItemButton
-                onClick={handleSearchByEmployer}
-                sx={{
-                  mb: "10px",
-                }}
-              >
-                <ListItemIcon>
-                  <WorkIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primaryTypographyProps={{
-                    fontWeight: "bold",
-                  }}
-                  primary="Employer Search"
-                />
-                {openEmployerSearch ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-              <Collapse in={openEmployerSearch} timeout="auto" unmountOnExit>
-                <NameSearch
-                  graduateSearch={filterDataByEmployer}
-                  text=" Search by employer"
-                />
-              </Collapse>
-              <ListItemButton
-                onClick={handleSearchByLengthOfWork}
-                sx={{
-                  mb: "10px",
-                }}
-              >
-                <ListItemIcon>
-                  <AccessTimeIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primaryTypographyProps={{
-                    fontWeight: "bold",
-                  }}
-                  primary="Length Of Service
-                "
-                />
-                {lengthOfWork ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-              <Collapse in={lengthOfWork} timeout="auto" unmountOnExit>
-                <LengthOfWork />
-              </Collapse>
-
-              <ListItemButton sx={{ pt: "20px", mt: 3 }}>
-                <ListItemIcon>
-                  <DownloadIcon />
-                </ListItemIcon>
-                <CSVLink
-                  data={convertJsonToCsv(data)}
-                  filename={"graduate_responses.csv"}
-                  style={{ textDecorationLine: "none" }}
                 >
-                  <Button
-                    variant="contained"
-                    color="success"
-                    sx={{ textDecorationLine: "none" }}
+                  <ListItemIcon>
+                    <FilterListIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primaryTypographyProps={{
+                      fontWeight: "bold",
+                    }}
+                    primary="Cohorts"
+                  />
+                  {openList ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+                <Collapse in={openList} timeout="auto" unmountOnExit>
+                  <CohortFilter cohortNum={1} key={1} />
+                  <CohortFilter cohortNum={2} key={2} />
+                  <CohortFilter cohortNum={3} key={3} />
+                  <CohortFilter cohortNum={4} key={4} />
+                  <CohortFilter cohortNum={5} key={5} />
+                  <CohortFilter cohortNum={6} key={6} />
+                  <CohortFilter cohortNum={7} key={7} />
+
+                  <List component="div">
+                    <ListItemButton onClick={() => resetFilter()} sx={{ pl: 4 }}>
+                      <ListItemIcon>
+                        <GroupsIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="All Cohorts" />
+                    </ListItemButton>
+                  </List>
+                </Collapse>
+                <ListItemButton
+                  onClick={handleSearchByGrad}
+                  sx={{
+                    mb: "10px",
+                  }}
+                >
+                  <ListItemIcon>
+                    <PersonSearchIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primaryTypographyProps={{
+                      fontWeight: "bold",
+                    }}
+                    primary="Graduate Search"
+                  />
+
+                  {openGradSearch ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+                <Collapse in={openGradSearch} timeout="auto" unmountOnExit>
+                  <NameSearch
+                    graduateSearch={filterDataByName}
+                    text=" Search by name"
+                  />
+                </Collapse>
+                <ListItemButton
+                  onClick={handleSearchByEmployer}
+                  sx={{
+                    mb: "10px",
+                  }}
+                >
+                  <ListItemIcon>
+                    <WorkIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primaryTypographyProps={{
+                      fontWeight: "bold",
+                    }}
+                    primary="Employer Search"
+                  />
+                  {openEmployerSearch ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+                <Collapse in={openEmployerSearch} timeout="auto" unmountOnExit>
+                  <NameSearch
+                    graduateSearch={filterDataByEmployer}
+                    text=" Search by employer"
+                  />
+                </Collapse>
+                <ListItemButton
+                  onClick={handleSearchByLengthOfWork}
+                  sx={{
+                    mb: "10px",
+                  }}
+                >
+                  <ListItemIcon>
+                    <AccessTimeIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primaryTypographyProps={{
+                      fontWeight: "bold",
+                    }}
+                    primary="Length Of Service
+                "
+                  />
+                  {lengthOfWork ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+                <Collapse in={lengthOfWork} timeout="auto" unmountOnExit>
+                  <LengthOfWork />
+                </Collapse>
+
+                <ListItemButton sx={{ pt: "20px", mt: 3 }}>
+                  <ListItemIcon>
+                    <DownloadIcon />
+                  </ListItemIcon>
+                  <CSVLink
+                    data={convertJsonToCsv(data)}
+                    filename={"graduate_responses.csv"}
+                    style={{ textDecorationLine: "none" }}
                   >
-                    Export CSV{" "}
-                  </Button>
-                </CSVLink>
-              </ListItemButton>
-            </List>
-          </Drawer>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      sx={{ textDecorationLine: "none" }}
+                    >
+                      Export CSV{" "}
+                    </Button>
+                  </CSVLink>
+                </ListItemButton>
+              </List>
+            </Drawer>
+          </ThemeProvider>
           <Box
             component="main"
             sx={{
