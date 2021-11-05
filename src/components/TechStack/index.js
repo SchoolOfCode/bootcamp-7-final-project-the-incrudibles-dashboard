@@ -31,7 +31,7 @@ const TechStack = ({ data, rows }) => {
   createGraphData(rows);
 
   return (
-    <div>
+    <div style={{ height: "fit-content" }}>
       <Bar
         options={{
           indexAxis: "y",
