@@ -67,7 +67,6 @@ const JobSatisfaction = ({ satisfactionIndex }) => {
             },
           ],
         }}
-
       />
     </div>
   );

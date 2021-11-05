@@ -80,6 +80,7 @@ export default function Homepage() {
               display: "flex",
               flexDirection: "column",
               height: "min-content",
+              pt: "2.3vw",
             }}
           >
             <SalaryGraph salaryInfo={ChartData} />
@@ -91,7 +92,7 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: "fit-content",
+              height: "min-content",
             }}
           >
             <Piechart employmentStatus={ChartData} />
