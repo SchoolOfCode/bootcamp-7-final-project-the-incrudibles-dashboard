@@ -1,7 +1,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
-const TechStack = ({ data }) => {
+const TechStack = ({ data, rows }) => {
   let labels = [];
   let values = [];
 
@@ -25,7 +25,7 @@ const TechStack = ({ data }) => {
     }
   }
 
-  createGraphData(10);
+  createGraphData(rows);
 
   return (
     <div>
@@ -60,8 +60,8 @@ const TechStack = ({ data }) => {
             },
           ],
         }}
-        height={500}
-        width={800}
+        height={250}
+        width={400}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box } from "@mui/system";
 import { getMostRecentResponse } from "../../helperFunctions/getrecentresponse";
-import Image1 from "../../images/number1.jpg"
+import Image1 from "../../images/number1.jpg";
 import Image2 from "../../images/number2.jpg";
 import Image3 from "../../images/number3.jpg";
 import Image4 from "../../images/number4.jpg";
@@ -23,7 +23,6 @@ export default function GradJobSatisfaction({ gradData }) {
             src={Image0}
             alt="No data on job satisfaction"
             style={{
-              marginTop: 8,
               maxWidth: "80%",
             }}
           />
@@ -34,7 +33,6 @@ export default function GradJobSatisfaction({ gradData }) {
             src={Image1}
             alt="Very low job satisfaction"
             style={{
-              marginTop: 8,
               maxWidth: "80%",
             }}
           />
@@ -45,7 +43,6 @@ export default function GradJobSatisfaction({ gradData }) {
             src={Image2}
             alt="Low job satisfaction"
             style={{
-              marginTop: 8,
               maxWidth: "80%",
             }}
           />
@@ -56,7 +53,6 @@ export default function GradJobSatisfaction({ gradData }) {
             src={Image3}
             alt="Average job satisfaction"
             style={{
-              marginTop: 8,
               maxWidth: "80%",
             }}
           />
@@ -67,7 +63,6 @@ export default function GradJobSatisfaction({ gradData }) {
             src={Image4}
             alt="Good job satisfaction"
             style={{
-              marginTop: 8,
               maxWidth: "80%",
             }}
           />
@@ -78,8 +73,8 @@ export default function GradJobSatisfaction({ gradData }) {
             src={Image5}
             alt="Very Good job satisfaction"
             style={{
-              marginTop: 8,
               maxWidth: "80%",
+              maxHeight: 155,
             }}
           />
         );
@@ -90,17 +85,19 @@ export default function GradJobSatisfaction({ gradData }) {
   return (
     <Box
       sx={{
+        display: "flex",
         bgcolor: "background.paper",
         boxShadow: 1,
         borderRadius: 1,
         p: 2,
-        mt: 2,
-        minWidth: 200,
+        minHeight: "100%",
       }}
     >
       <Box sx={{ color: "text.secondary" }}>Current job satisfaction</Box>
       <Box sx={{ color: "text.secondary", display: "inline", fontSize: 12 }}>
-        <div style={{ display: "flex", justifyContent: "center" }}><HappinessIndicator score={formattedSatisfaction} /></div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <HappinessIndicator score={formattedSatisfaction} />
+        </div>
       </Box>
     </Box>
   );

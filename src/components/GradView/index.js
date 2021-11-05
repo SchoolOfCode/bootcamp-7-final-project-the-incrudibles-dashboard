@@ -8,12 +8,25 @@ import SalaryOverTime from "../SalaryOverTime";
 import SalaryCompare from "../SalaryCompare";
 import GradJobSatisfaction from "../GradJobSatisfaction";
 import ResponseRow from "../ResponseTableRow";
+import GradSuccessTime from "../GradSuccessTime";
+import TechStack from "../TechStack";
 
-export default function GradView({ gradData }) {
+export default function GradView({ gradData, openResponse, setOpenResponse }) {
   const latestResponse = getMostRecentResponse(gradData.responses);
 
+  let techArray = [];
+  gradData.responses.forEach((response) => {
+    if (response.current_tech_stack) {
+      response.current_tech_stack.forEach((tech) => {
+        if (tech.name) {
+          techArray.push(tech.name);
+        }
+      });
+    }
+  });
+
   return (
-    <Box sx={{ margin: 1, height: "65vh" }}>
+    <Box sx={{ margin: 1, height: "content" }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "row" }}>
@@ -36,13 +49,16 @@ export default function GradView({ gradData }) {
             </Typography>
           </Paper>
         </Grid>
-        <Grid xs={12} md={7}>
-          <Grid xs={12}>
-            <Grid xs={12} md={6}>
+        <Grid xs={12} md={7} sx={{ p: 3 }}>
+          <Grid xs={12} sx={{ display: "flex" }}>
+            <Grid xs={12} md={4}>
               <SalaryCompare gradData={gradData} />
             </Grid>
-            <Grid xs={12} md={6}>
+            <Grid xs={12} md={4} sx={{ pl: 2 }}>
               <GradJobSatisfaction gradData={gradData} />
+            </Grid>
+            <Grid xs={12} md={4} sx={{ pl: 2 }}>
+              <GradSuccessTime gradData={gradData} />
             </Grid>
           </Grid>
           <Grid xs={12}>
@@ -51,14 +67,26 @@ export default function GradView({ gradData }) {
                 p: 2,
                 display: "flex",
                 flexDirection: "column",
-                height: 360,
               }}
             >
               <SalaryOverTime gradData={gradData} />
             </Paper>
           </Grid>
         </Grid>
-        <Grid xs={12} md={5}>
+        <Grid xs={12} md={5} sx={{ pt: 3 }}>
+          <Grid xs={12}>
+            <Paper
+              sx={{
+                p: 2,
+                display: "flex",
+                flexDirection: "column",
+                height: "content",
+                mb: 2,
+              }}
+            >
+              <TechStack data={techArray} numberOfRows={6} />
+            </Paper>
+          </Grid>
           <Grid xs={12}>
             <Paper
               sx={{
@@ -79,13 +107,17 @@ export default function GradView({ gradData }) {
                 </TableHead>
                 <TableBody>
                   {gradData.responses.map((response) => (
-                    <ResponseRow responseData={response} />
+                    <ResponseRow
+                      id={response.id}
+                      responseData={response}
+                      openResponse={openResponse}
+                      setOpenResponse={setOpenResponse}
+                    />
                   ))}
                 </TableBody>
               </Table>
             </Paper>
           </Grid>
-          <Grid xs={12}></Grid>
         </Grid>
         {/* selection */}
         {/* <Grid item xs={12} md={3} lg={3}></Grid>

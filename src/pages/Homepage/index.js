@@ -39,6 +39,7 @@ export default function Homepage() {
     }
   });
 
+  console.log(techArray);
   return (
     <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
@@ -115,7 +116,7 @@ export default function Homepage() {
               height: "min-content",
             }}
           >
-            <TechStack data={techArray} />
+            <TechStack data={techArray} rows={8} />
           </Paper>
         </Grid>
         {/* <Grid item xs={4}>
