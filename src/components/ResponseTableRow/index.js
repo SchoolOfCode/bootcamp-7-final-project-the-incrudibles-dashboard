@@ -5,6 +5,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import IconButton from "@mui/material/IconButton";
 import { Collapse } from "@mui/material";
 import ResponseView from "../ResponseView";
+import ErrorIcon from "@mui/icons-material/Error";
 
 export default function ResponseRow({
   responseData,
@@ -12,7 +13,12 @@ export default function ResponseRow({
   setOpenResponse,
   id,
 }) {
-
+  let formattedDate = new Date(responseData.timestamp);
+  let options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   return (
     <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -31,7 +37,12 @@ export default function ResponseRow({
             )}
           </IconButton>
         </TableCell>
-        <TableCell>{responseData.timestamp.slice(0, 10)}</TableCell>
+        <TableCell align="right">
+          {formattedDate.toLocaleDateString("en-GB", options)}
+        </TableCell>
+        <TableCell align="center" sx={{ width: 300 }}>
+          {responseData.tech_role ? "" : <ErrorIcon />}
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

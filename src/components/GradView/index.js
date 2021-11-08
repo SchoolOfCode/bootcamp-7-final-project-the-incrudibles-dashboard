@@ -50,7 +50,7 @@ export default function GradView({ gradData, openResponse, setOpenResponse }) {
             <Typography
               gutterBottom
               component="div"
-              sx={{ fontSize: 20, color: "white" }}
+              sx={{ fontSize: 20, color: "white", fontWeight: "medium" }}
             >
               {latestResponse.timestamp
                 ? `${gradData.graduate_name.split(" ")[0]} - ${
@@ -125,10 +125,12 @@ export default function GradView({ gradData, openResponse, setOpenResponse }) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableCell align="center"></TableCell>
-                  <TableCell align="left">
+                  <TableCell align="right">
                     <Typography gutterBottom component="div">
                       Survey responses
                     </Typography>
+                  </TableCell>
+                  <TableCell align="left">
                   </TableCell>
                 </TableHead>
                 <TableBody>
