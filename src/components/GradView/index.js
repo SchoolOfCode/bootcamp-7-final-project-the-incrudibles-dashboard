@@ -25,22 +25,32 @@ export default function GradView({ gradData, openResponse, setOpenResponse }) {
     }
   });
 
+  let lastSurvey = new Date(latestResponse.timestamp);
+  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+
   return (
     <Box sx={{ margin: 1, height: "95vh" }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper sx={{ mt: 2, p: 2, display: "flex" }}>
+          <Paper
+            sx={{
+              mt: 2,
+              p: 2,
+              display: "flex",
+              background: "linear-gradient(to right, #003f5c, #58508d);",
+            }}
+          >
             <div
               sx={{
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
+                justifyContent: "center",
               }}
             >
               <Typography
                 gutterBottom
                 component="div"
-                sx={{ fontWeight: "bold" }}
+                sx={{ fontSize: 20, color: "white" }}
               >
                 {latestResponse.timestamp
                   ? `${gradData.graduate_name.split(" ")[0]} - ${
@@ -50,12 +60,13 @@ export default function GradView({ gradData, openResponse, setOpenResponse }) {
                       gradData.graduate_name.split(" ")[0]
                     } is currently not working in the technology sector`}
               </Typography>
-              <Typography gutterBottom component="div">
+              <Typography
+                gutterBottom
+                component="div"
+                sx={{ fontSize: 15, color: "white" }}
+              >
                 {latestResponse.timestamp
-                  ? `Last survey completed: ${latestResponse.timestamp.slice(
-                      0,
-                      10
-                    )}`
+                  ? `Last survey completed: ${lastSurvey.toLocaleDateString("en-GB", options)}`
                   : `No responses`}
               </Typography>
             </div>
