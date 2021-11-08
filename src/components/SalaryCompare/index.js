@@ -37,6 +37,7 @@ export default function SalaryCompare({ gradData }) {
           boxShadow: 1,
           borderRadius: 1,
           p: 2,
+          minHeight: "100%",
         }}
       >
         <Box sx={{ color: "text.secondary" }}>Current salary</Box>

@@ -12,19 +12,12 @@ import image3 from "../../images/3.png";
 import image4 from "../../images/4.png";
 import image5 from "../../images/5.png";
 import { useState } from "react";
-// import { Element, animateScroll } from "react-scroll";
+import React from "react";
 
 export default function GradTable({ gradData, id, openRow, setOpenRow }) {
   const latestResponse = getMostRecentResponse(gradData.responses);
   const [openResponse, setOpenResponse] = useState(null);
 
-  // animateScroll.scrollTo(`${id}`, {
-  //   duration: 1500,
-  //   delay: 100,
-  //   smooth: true,
-  //   containerId: `${id}`,
-  //   offset: 50,
-  // });
 
   const formattedSatisfaction = latestResponse.job_satisfaction
     ? latestResponse.job_satisfaction
@@ -121,12 +114,19 @@ export default function GradTable({ gradData, id, openRow, setOpenRow }) {
     <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell>
-          {/* <Element name={id} /> */}
           <IconButton
             aria-label="expand row"
+            id={`${id}`}
             size="small"
             onClick={() => {
-              openRow === id ? setOpenRow(null) : setOpenRow(id);
+              if (openRow === id) {
+                setOpenRow(null);
+              } else {
+                document
+                  .getElementById(id)
+                  .scrollIntoView({ behavior: "smooth" });
+                setOpenRow(id);
+              }
             }}
           >
             {openRow === id ? (

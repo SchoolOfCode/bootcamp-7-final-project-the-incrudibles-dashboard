@@ -26,27 +26,39 @@ export default function GradView({ gradData, openResponse, setOpenResponse }) {
   });
 
   return (
-    <Box sx={{ margin: 1, height: "content" }}>
+    <Box sx={{ margin: 1, height: "95vh" }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper sx={{ p: 2, display: "flex", flexDirection: "row" }}>
-            <Typography
-              gutterBottom
-              component="div"
-              sx={{ fontWeight: "bold" }}
+          <Paper sx={{ mt: 2, p: 2, display: "flex" }}>
+            <div
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
             >
-              {latestResponse.current_employer
-                ? `${
-                    gradData.graduate_name.split(" ")[0]
-                  } has been working as a ${
-                    latestResponse.current_position
-                  } at ${latestResponse.current_employer} for ${
-                    latestResponse.length_of_service
-                  }`
-                : `${
-                    gradData.graduate_name.split(" ")[0]
-                  } is currently not working in the technology sector`}
-            </Typography>
+              <Typography
+                gutterBottom
+                component="div"
+                sx={{ fontWeight: "bold" }}
+              >
+                {latestResponse.timestamp
+                  ? `${gradData.graduate_name.split(" ")[0]} - ${
+                      latestResponse.current_position
+                    } at ${latestResponse.current_employer}`
+                  : `${
+                      gradData.graduate_name.split(" ")[0]
+                    } is currently not working in the technology sector`}
+              </Typography>
+              <Typography gutterBottom component="div">
+                {latestResponse.timestamp
+                  ? `Last survey completed: ${latestResponse.timestamp.slice(
+                      0,
+                      10
+                    )}`
+                  : `No responses`}
+              </Typography>
+            </div>
           </Paper>
         </Grid>
         <Grid xs={12} md={7} sx={{ p: 3 }}>
@@ -65,6 +77,7 @@ export default function GradView({ gradData, openResponse, setOpenResponse }) {
             <Paper
               sx={{
                 p: 2,
+                mt: 2,
                 display: "flex",
                 flexDirection: "column",
               }}
@@ -119,21 +132,6 @@ export default function GradView({ gradData, openResponse, setOpenResponse }) {
             </Paper>
           </Grid>
         </Grid>
-        {/* selection */}
-        {/* <Grid item xs={12} md={3} lg={3}></Grid>
-        {/* job satisfaction */}
-        {/* <Grid item xs={12} md={3} lg={3}>
-          <div
-            sx={{
-              p: 2,
-              display: "flex",
-              flexDirection: "column",
-              height: 240,
-            }}
-          ></div>
-        </Grid>
-        {/* salary over time */}
-        {/* <Grid item xs={12} md={6} lg={6}></Grid> */}
       </Grid>
     </Box>
   );
