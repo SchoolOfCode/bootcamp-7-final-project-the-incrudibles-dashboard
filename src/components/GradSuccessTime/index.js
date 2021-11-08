@@ -37,16 +37,15 @@ export default function GradSuccessTime({ gradData }) {
           borderRadius: 1,
           p: 2,
           minHeight: "100%",
+          display: "flex",
+          justifyContent: "space-between"
         }}
       >
-        <Box sx={{ color: "text.secondary" }}>
+        <Box sx={{ color: "text.secondary", maxWidth: 135 }}>
           Days to find first job in tech
         </Box>
         <Box sx={{ color: "text.primary", fontSize: 34, fontWeight: "medium" }}>
           {timeDiff(gradData)}
-        </Box>
-        <Box sx={{ color: "text.secondary", display: "inline", fontSize: 12 }}>
-          {" "}
         </Box>
       </Box>
     </ThemeProvider>
