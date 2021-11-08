@@ -13,11 +13,11 @@ import image4 from "../../images/4.png";
 import image5 from "../../images/5.png";
 import { useState } from "react";
 import React from "react";
+import ErrorIcon from "@mui/icons-material/Error";
 
 export default function GradTable({ gradData, id, openRow, setOpenRow }) {
   const latestResponse = getMostRecentResponse(gradData.responses);
   const [openResponse, setOpenResponse] = useState(null);
-
 
   const formattedSatisfaction = latestResponse.job_satisfaction
     ? latestResponse.job_satisfaction
@@ -152,9 +152,17 @@ export default function GradTable({ gradData, id, openRow, setOpenRow }) {
           </Typography>
         </TableCell>
         <TableCell align="left">
-          <Typography sx={{ typography: "subtitle2", fontSize: 16 }}>
-            {latestResponse.current_position}
-          </Typography>
+          {latestResponse.current_position ? (
+            <Typography sx={{ typography: "subtitle2", fontSize: 16 }}>
+              {latestResponse.current_position}
+            </Typography>
+          ) : (
+            <Typography
+              sx={{ typography: "subtitle2", fontSize: 16, color: "red" }}
+            >
+              No tech role
+            </Typography>
+          )}
         </TableCell>
         <TableCell align="center" style={{ padding: 0 }}>
           <HappinessIndicator
@@ -163,11 +171,13 @@ export default function GradTable({ gradData, id, openRow, setOpenRow }) {
         </TableCell>
         <TableCell align="right">
           <Typography sx={{ typography: "subtitle2", fontSize: 16 }}>
-            {latestResponse.current_salary
-              ? `£${String(latestResponse.current_salary).slice(0, 2)},${String(
-                  latestResponse.current_salary
-                ).slice(2)}`
-              : "No tech role"}
+            {latestResponse.current_salary ? (
+              `£${String(latestResponse.current_salary).slice(0, 2)},${String(
+                latestResponse.current_salary
+              ).slice(2)}`
+            ) : (
+              <ErrorIcon />
+            )}
           </Typography>
         </TableCell>
       </TableRow>
