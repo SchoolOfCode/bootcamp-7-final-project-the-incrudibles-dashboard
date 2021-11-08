@@ -26,8 +26,12 @@ export default function GradView({ gradData, openResponse, setOpenResponse }) {
   });
 
   let lastSurvey = new Date(latestResponse.timestamp);
-  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
+  let options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
 
   return (
     <Box sx={{ margin: 1, height: "95vh" }}>
@@ -38,38 +42,36 @@ export default function GradView({ gradData, openResponse, setOpenResponse }) {
               mt: 2,
               p: 2,
               display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
               background: "linear-gradient(to right, #003f5c, #58508d);",
             }}
           >
-            <div
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
+            <Typography
+              gutterBottom
+              component="div"
+              sx={{ fontSize: 20, color: "white" }}
             >
-              <Typography
-                gutterBottom
-                component="div"
-                sx={{ fontSize: 20, color: "white" }}
-              >
-                {latestResponse.timestamp
-                  ? `${gradData.graduate_name.split(" ")[0]} - ${
-                      latestResponse.current_position
-                    } at ${latestResponse.current_employer}`
-                  : `${
-                      gradData.graduate_name.split(" ")[0]
-                    } is currently not working in the technology sector`}
-              </Typography>
-              <Typography
-                gutterBottom
-                component="div"
-                sx={{ fontSize: 15, color: "white" }}
-              >
-                {latestResponse.timestamp
-                  ? `Last survey completed: ${lastSurvey.toLocaleDateString("en-GB", options)}`
-                  : `No responses`}
-              </Typography>
-            </div>
+              {latestResponse.timestamp
+                ? `${gradData.graduate_name.split(" ")[0]} - ${
+                    latestResponse.current_position
+                  } at ${latestResponse.current_employer}`
+                : `${
+                    gradData.graduate_name.split(" ")[0]
+                  } is currently not working in the technology sector`}
+            </Typography>
+            <Typography
+              gutterBottom
+              component="div"
+              sx={{ fontSize: 15, color: "white", align: "right" }}
+            >
+              {latestResponse.timestamp
+                ? `Last survey completed: ${lastSurvey.toLocaleDateString(
+                    "en-GB",
+                    options
+                  )}`
+                : `No responses`}
+            </Typography>
           </Paper>
         </Grid>
         <Grid xs={12} md={7} sx={{ p: 3 }}>
