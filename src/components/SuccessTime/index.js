@@ -59,15 +59,16 @@ const SuccessTime = ({ times }) => {
         }}
         options={{
           plugins: {
-            title: {
-              display: true,
-              text: "Time taken to secure first job",
-            },
+            // title: {
+            //   display: true,
+            //   text: "Time taken to secure first job",
+            // },
           },
         }}
         height={350}
         width={800}
       />
+      <br />
     </div>
   );
 };

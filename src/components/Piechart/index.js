@@ -28,6 +28,7 @@ const Piechart = ({ employmentStatus }) => {
         height={250}
         width={800}
       />
+      <p style={{ color: "#003f5c", fontWeight: "bold" }}>Employment Status</p>
     </div>
   );
 };
