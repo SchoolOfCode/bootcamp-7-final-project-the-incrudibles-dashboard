@@ -23,7 +23,7 @@ const SalaryOverTime = ({ gradData }) => {
               borderColor: ["#003f5c"],
               borderWidth: 2,
               tension: 0.3,
-              spanGaps: true,
+              spanGaps: false,
             },
           ],
         }}
