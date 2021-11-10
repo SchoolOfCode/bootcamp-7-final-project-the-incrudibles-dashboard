@@ -61,6 +61,7 @@ const TechStack = ({ data, rows }) => {
                 "#40cc4c",
               ],
             },
+          
           ],
         }}
         height={150}
