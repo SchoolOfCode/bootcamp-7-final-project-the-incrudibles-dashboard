@@ -45,6 +45,7 @@ export default function Homepage() {
       <Grid container spacing={3}>
         <Grid item xs={12}></Grid>
         {/* selection */}
+
         <Grid item xs={4}>
           <Paper
             sx={{
@@ -54,10 +55,9 @@ export default function Homepage() {
               height: "min-content",
             }}
           >
-            <JobSatisfaction satisfactionIndex={ChartData} />
+            <Piechart employmentStatus={ChartData} />
           </Paper>
         </Grid>
-
         {/* pie chart */}
 
         <Grid item xs={8}>
@@ -66,7 +66,7 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: "min-content",
+              height: "100%",
               pt: "2.3vw",
             }}
           >
@@ -80,13 +80,14 @@ export default function Homepage() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              height: "min-content",
+              height: "100%",
               pt: "2.3vw",
             }}
           >
             <SalaryGraph salaryInfo={ChartData} />
           </Paper>
         </Grid>
+
         <Grid item xs={4}>
           <Paper
             sx={{
@@ -96,7 +97,7 @@ export default function Homepage() {
               height: "min-content",
             }}
           >
-            <Piechart employmentStatus={ChartData} />
+            <JobSatisfaction satisfactionIndex={ChartData} />
           </Paper>
         </Grid>
         <Grid item xs={12}>

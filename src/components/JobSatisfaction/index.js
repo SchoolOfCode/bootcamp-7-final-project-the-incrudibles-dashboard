@@ -37,8 +37,8 @@ const JobSatisfaction = ({ satisfactionIndex }) => {
       <Doughnut
         data={{
           labels: [
-            "Very Dissattisfied",
-            "Dissattisfied",
+            "Very Dissatisfied",
+            "Dissatisfied",
             "Satisfied",
             "Happy",
             "Very Happy",
@@ -68,6 +68,7 @@ const JobSatisfaction = ({ satisfactionIndex }) => {
           ],
         }}
       />
+      <p style={{ color: "#003f5c", fontWeight: "bold" }}>Job Satisfaction</p>
     </div>
   );
 };
